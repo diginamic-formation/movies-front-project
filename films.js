@@ -9,6 +9,7 @@ async function getFilms(pageNumber, pageSize) {
     return datas
 }
 
+
 async function getPictures(imdbId) {
     const imdbUrl = `https://api.themoviedb.org/3/find/${imdbId}?external_source=imdb_id&api_key=${API_KEY}`;
     let datas = await fetch(imdbUrl)
@@ -39,11 +40,25 @@ let filmData = [];
 const filmDisplay = async () => {
     filmData = await getFilms(1, 2);
     filmData.content.forEach(async (film) => {
-        console.log(film.referenceNumber);
-        let picture = await getPictures(film.referenceNumber);
-        console.log(picture);
-        
+         let picture = await getPictures(film.referenceNumber);
+        // console.log(picture);
+        filmData.push(picture);
+        console.log(filmData);
+
+
     });
+
+    document.querySelector(".films").innerHTML = filmData.content.map( (film) =>`
+    <article class="col">
+    <div class="card">
+    <img class="card-img-top" src=images/Alad2-2018-cinepassion34-1.jpg />
+    <div class="card-body">
+    <h5 class="card-title">${film.title}</h5>
+    <p class="card-text">${film.genres[0]}</p>
+    </div>
+    </div>
+    </article>
+    `)
     console.log(filmData);
 
 }
