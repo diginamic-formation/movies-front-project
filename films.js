@@ -3,11 +3,10 @@ const API_KEY = '8c876ad71559ac44edf7af86b9d77927'
 
 async function getFilms(pageNumber, pageSize) {
     let datas = await fetch(`${urlAppFilms}?page=${pageNumber}&size=${pageSize}`)
-        .then((response) => {return response.json()})
+        .then((response) => { return response.json() })
         .catch(error => console.log(error))
-    
-    return datas
 
+    return datas
 }
 
 
@@ -45,6 +44,8 @@ const filmDisplay = async () => {
         // console.log(picture);
         filmData.push(picture);
         console.log(filmData);
+
+
     });
 
     document.querySelector(".films").innerHTML = filmData.content.map( (film) =>`
