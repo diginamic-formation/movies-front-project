@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actor Profile</title>
+    <link rel="stylesheet" href="css-actor/normalize.css" />
+    <link rel="stylesheet" href="css-actor/styles.css" />
+    <style></style>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li>Je suis la navbar</li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main-container">
+      <section class="actor-identity">
+        <img class="actor-image" src="img-actor/al_pacino.png" alt="" />
+        <ul>
+          <span id="edit-icon" class="edit-icon">✏️</span>
+          <div id="edit-modal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <form id="edit-movie-form">
+                <label for="name">Nom:</label>
+                <input type="text" id="name" name="name" />
+                <label for="firstName">Prénom:</label>
+                <input type="text" id="firstName" name="firstName" />
+                <label for="dateBirth">Date de naissance:</label>
+                <input type="text" id="dateBirth" name="dateBirth" />
+                <label for="placeBirth">Lieu de naissance:</label>
+                <input type="text" id="placeBirth" name="placeBirth" />
+                <label for="height">Taille:</label>
+                <input type="text" id="height" name="height" />
+                <label for="citizenship">Nationalité:</label>
+                <input type="text" id="citizenship" name="citizenship" />
+
+                <button type="submit">Update</button>
+              </form>
+            </div>
+          </div>
+        </ul>
+        <ul>
+          Nom: Pacino
+        </ul>
+        <ul>
+          Prenom: Al
+        </ul>
+        <ul>
+          Date de naissance: 12/12/1961
+        </ul>
+        <ul>
+          Lieu de naissance: Chicago
+        </ul>
+        <ul>
+          Taille: 1,85 m
+        </ul>
+        <ul>
+          Nationalité: Américaine
+        </ul>
+      </section>
+      <section class="actor-info">
+        <section class="actor-biography">
+          <h2>Biographie</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure cum
+            perferendis officiis rem veniam, ad eum nostrum voluptates ipsum
+            maiores, explicabo quasi nihil! Assumenda illum id veniam mollitia
+            incidunt autem? Sed accusamus sint saepe molestias possimus dolorem
+            laborum rem id fugit quod deleniti perspiciatis totam provident
+            commodi quibusdam eius odio, velit maxime quidem eveniet! Minima
+            enim error quidem sequi natus. Reiciendis, nihil minus a molestiae
+            quisquam reprehenderit aliquam praesentium rerum quibusdam dolores
+            minima quae, officiis optio accusamus maiores laudantium, iste
+            dolorum tempora ex corrupti voluptate aut. Dicta adipisci eaque ut?
+            Optio, quidem quam facere sequi laboriosam pariatur odit totam
+            excepturi fuga quod dolor nobis sint adipisci recusandae eaque
+            deleniti illum, sit esse est facilis iure autem. Corporis velit
+            ipsum cumque.orem ipsum dolor sit amet consectetur adipisicing elit.
+            Iure cum perferendis officiis rem veniam, ad eum nostrum voluptates
+            ipsum maiores, explicabo quasi nihil! Assumenda illum id veniam
+            mollitia incidunt autem? Sed accusamus sint saepe molestias possimus
+            dolorem laborum rem id fugit quod deleniti perspiciatis totam
+            provident commodi quibusdam eius odio, velit maxime quidem eveniet!
+            Minima enim error quidem sequi natus. Reiciendis, nihil minus a
+            molestiae quisquam reprehenderit aliquam praesentium rerum quibusdam
+            dolores minima quae, officiis optio accusamus maiores laudantium,
+            iste dolorum tempora ex corrupti voluptate aut. Dicta adipisci eaque
+            ut? Optio, quidem quam facere sequi laboriosam pariatur odit totam
+            excepturi fuga quod dolor nobis sint adipisci recusandae eaque
+            deleniti illum, sit esse est facilis iure autem. Corporis velit
+            ipsum cumque.
+          </p>
+        </section>
+        <section class="actor-filmography">
+          <h2>Filmographie</h2>
+          <div id="movies-list"></div>
+        </section>
+      </section>
+
+      <script src="actor.js"></script>
+    </main>
+    <footer>
+      <nav>
+        <ul></ul>
+      </nav>
+    </footer>
+  </body>
+</html>
