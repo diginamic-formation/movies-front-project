@@ -49,14 +49,12 @@ const filmDisplay = async () => {
     <div class="card">
     <img class="card-img-top" src=${film.picture} />
     <div class="card-body">
-    <h5 class="card-title">${film.title}</h5>
-    <p class="card-text">${film.genres}</p>
+    <h5 class="card-title text-truncate">${film.title}</h5>
+    <p class="card-text text-truncate">${film.genres}</p>
     </div>
     </div>
     </article>
-    `)
-    console.log(filmData);
+    `).join("")
 
 }
 filmDisplay();
-
