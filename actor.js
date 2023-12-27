@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias incidunt possimus ipsam necessitatibus eius animi corporis eos quisquam debitis, est, reprehenderit in, ab perspiciatis? Delectus sequi veniam itaque adipisci assumenda.Autem accusamus vitae eos blanditiis nobis dolorem iusto facere voluptatem eum impedit aliquid quas cumque placeat, inventore recusandae porro quo sint eaque. Officiis suscipit magnam laboriosam molestiae quae facere mollitia",
     },
   ];
-
+  // Affichage de la liste des films
   const moviesList = document.getElementById("movies-list");
   movies.forEach((movie) => {
     const movieItem = document.createElement("div");
@@ -66,6 +66,9 @@ document.addEventListener("DOMContentLoaded", function () {
 //   };
 // });
 
+
+
+// Affichage du formulaire pour modifier info acteur
 document.addEventListener("DOMContentLoaded", function () {
   const editIcon = document.getElementById("edit-icon");
   const modal = document.getElementById("edit-modal");
