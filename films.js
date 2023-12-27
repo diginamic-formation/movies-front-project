@@ -17,31 +17,35 @@ async function getFilms(pageNumber) {
     }
 }
 
-async function getPictures(imdbId) {
-    const imdbUrl = `https://api.themoviedb.org/3/find/${imdbId}?external_source=imdb_id&api_key=${API_KEY}`;
-    let datas = await fetch(imdbUrl)
+function getPictures(imdbId) {
+    return fetch(`https://api.themoviedb.org/3/find/${imdbId}?external_source=imdb_id&api_key=${API_KEY}`)
         .then(response => response.json())
         .then(data => {
-            if (data.movie_results.length != 0) {
-                return data.movie_results[0].poster_path
-            } else if (data.person_results.length != 0) {
-                return data.person_results[0].poster_path
-            } else if (data.tv_results.length != 0) {
-                return data.tv_results[0].poster_path
-            } else if (data.tv_episode_results.length != 0) {
-                return data.tv_episode_results[0].poster_path
-            } else if (data.tv_season_results.length != 0) {
-                return data.tv_season_results[0].poster_path
-            } else {
-                return ''
+            for (i in data) {
+                if (data[i][0]) {
+                    return `https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${data[i][0].poster_path}`
+                }
             }
-
-
+            throw new Error("Poster Not Found")
         })
-        .catch(error => console.log(error))
-
-    return `https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${datas}`
 }
+
+
+function getPictureFromOmDbApi(imdbId) {
+    
+    return fetch(`https://www.omdbapi.com/?i=${imdbId}&plot=full&apikey=218f3e08`)
+        .then(response => response.json())
+        .then(data => {
+            if(data?.Poster && data.Poster !== "N/A"){
+                return data.Poster
+            }else{
+                throw new Error("Picture Not Found")
+            }
+            
+        })
+
+}
+
 
 async function filmDisplay(pageNumber) {
     try {
@@ -50,10 +54,13 @@ async function filmDisplay(pageNumber) {
         }
 
         const filmData = await getFilms(pageNumber);
-        for (const film of filmData.content) {
-            const picture = await getPictures(film.referenceNumber);
-            film.picture = picture;
+        for (film of filmData.content) {
+            const picture = await Promise.any([getPictureFromOmDbApi(film.referenceNumber),getPictures(film.referenceNumber)]).
+            then(picture => picture)
+            .catch(e => 'images/no-poster-available.jpg')
+            film.picture = picture    
         }
+    
 console.log(filmData);
         document.querySelector(".films").innerHTML = filmData.content.map((film) => `
             <article class="col">
