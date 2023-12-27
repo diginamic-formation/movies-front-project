@@ -1,3 +1,50 @@
+const urlAppActors = "http://localhost:8080/persons/all";
+const urlAppActor = "http://localhost:8080/persons/";
+const API_KEY = "8c876ad71559ac44edf7af86b9d77927";
+
+const pageSize = 12;
+let totalPageCount = 332; // Nombre total de pages
+let currentPage = 0;
+
+async function getActors(pageNumber) {
+  try {
+    const response = await fetch(
+      `${urlAppActors}?page=${pageNumber}&size=${pageSize}`
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching Actors:", error);
+    throw error;
+  }
+}
+
+async function getActorById(id) {
+  try {
+    const response = await fetch(`${urlAppActor}${id}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching Actor:", error);
+    throw error;
+  }
+}
+
+function getPictures(imdbId) {
+  return fetch(
+    `https://api.themoviedb.org/3/find/${imdbId}?external_source=imdb_id&api_key=${API_KEY}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      for (i in data) {
+        if (data[i][0]) {
+          return `https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${data[i][0].poster_path}`;
+        }
+      }
+      throw new Error("Poster Not Found");
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const movies = [
     {
@@ -65,8 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //     showEditForm();
 //   };
 // });
-
-
 
 // Affichage du formulaire pour modifier info acteur
 document.addEventListener("DOMContentLoaded", function () {
