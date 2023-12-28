@@ -18,18 +18,68 @@
     />
     <link rel="stylesheet" href="films.css" />
     <title>Gestion de films</title>
-  </head>
-  <body class="bg-light">
-    <div class="loader">
-      <span>Movies...</span>
-    </div>
-    <div class="page">
-      <header>
-        <p></p>
-      </header>
-      <main class="container">
-        <!--Menu de recherche-->
-        <!-- <section class="d-flex justify-content-center">
+
+</head>
+<body class="bg-light">
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-dark">
+            <div class="navbar navbar-dark bg-dark shadow-sm">
+                <div class="container">
+                  <a href="../index.html" class="navbar-brand d-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2"
+                      viewBox="0 0 24 24">
+                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                      <circle cx="12" cy="13" r="4" /></svg>
+                    <strong>Movies</strong>
+                  </a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>      </div>
+                </div>
+                <div class="collapse navbar-collapse text-white justify-content-between align-items-center" style ="width:70%" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-white">
+                    <li class="nav-item ">
+                        <a class="nav-link active " aria-current="page" href="../index.html">🏠 Home</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link text-white " href="#">Genres</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link text-white " href="#">Acteurs</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link text-white " href="#">Réalisateurs</a>
+                    </li>
+                    <li class="nav-item text-white">
+                        <a class="nav-link text-white" href="films.html">Films</a>
+                    </li>
+                    </ul>
+                </div>
+                <div>
+                    <form class="d-flex" role="search">
+                       
+                   <label for = "name">
+                        <select name="choix" id="choix">
+                            <option value="film">Films</option>
+                            <option value="person">Célébrités</option>
+                        </select>
+                   </label>
+                    <input class="form-control form-control-sm" type="search" name="name" id ="name" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit" onclick="choice()">Search</button>
+                    </form>
+                </div>
+            </div>
+            
+          
+          </nav>
+    </header>
+    <main class="container">
+       <!--Menu de recherche--> 
+        <section class="d-flex justify-content-center">
+
             <input class="form-control me-2" type="search" placeholder="Entrer un film" aria-label="Search">
             <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
         </section> -->

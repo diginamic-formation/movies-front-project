@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.72.0">
+  <title>Affichage Film</title>
+
+  <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/album/">
+
+
+
+  <!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<link href="/assets/css/all.css" rel="stylesheet">
+ 
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+
+</head>
+
+  
+  <header>
+    <!--                        Menu                      -->
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container">
+              <a href="../index.html" class="navbar-brand d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2"
+                  viewBox="0 0 24 24">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                  <circle cx="12" cy="13" r="4" /></svg>
+                <strong>Movies</strong>
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+                aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>      </div>
+            </div>
+            <div class="collapse navbar-collapse text-white justify-content-between align-items-center" style ="width:70%" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-white">
+                <li class="nav-item ">
+                    <a class="nav-link active " aria-current="page" href="../index.html">🏠 Home</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-white " href="#">Genres</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-white " href="#">Acteurs</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-white " href="#">Réalisateurs</a>
+                </li>
+                <li class="nav-item text-white">
+                    <a class="nav-link text-white" href="#">Films</a>
+                </li>
+                </ul>
+            </div>
+            <div>
+                <form class="d-flex" role="search">
+                   
+               <label for = "search" class="form-floating mb-3">
+                    <select name="choix" id="choix">
+                        <option value="film">Films</option>
+                        <option value="person">Célébrités</option>
+                    </select>
+               </label>
+                <input class="form-control form-control-sm" type="search" name="search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit" onclick="">Search</button>
+                </form>
+            </div>
+        </div>
+        
+      </nav>
+<!--                      Fin Menu                      -->
+  </header>
+
+  <body class ="bg-dark ">
+  
+  <div class="justify-content-between">
+  
+         <div class="row row-cols-1 row-cols-sm-4 row-cols-md-3 g-3">
+          <div class="col">
+            <div class="card shadow-sm">
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
+                <title>Placeholder</title>
+                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                  dy=".3em">Thumbnail</text>
+              </svg>
+
+              <div class="card-body">
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          
+        </div>
+   
+ </div>
+
+ 
+
+ 
+
+</body>
+
+
+</html>
