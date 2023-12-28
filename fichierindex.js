@@ -30,10 +30,8 @@ async function getFilms(pageNumber, pageSize) {
 
 }
 async function getFilmByTitle(vNom){
-    vNom1 = vNom
-    console.log(vNom)
-    const complet = `${urlApiFilm}${vNom}` //urlApiFilm + vNom
-    //alert("complet "+complet)
+   
+    const complet = `${urlApiFilm}${vNom}` 
     let datas = await fetch(complet)
     .then((response) => {return response.json()})
     .catch(error => console.log(error))
@@ -59,16 +57,18 @@ async function getPictures(imdbId) {
     return datas
 }
 async function choice(){
+    
     const vChoix = document.querySelector("#choix").value;
     vNom = document.querySelector("#name").value;
     //alert(vChoix)
 
     console.log(vChoix)
     if (vChoix == "film"){
-     await filmDisplay(vNom)
+        await filmDisplay(vNom)
+    }else if(vChoix == "person"){
+       // await personDisplay(vNom)
+    }
 
-   
- }
 }
 
 
@@ -79,5 +79,12 @@ const filmDisplay = async () => {
    
 
 }
-//filmDisplay();
+const personDisplay = async () => {
+    
+    filmData = await getFilmByTitle(vNom);
+    console.log(filmData);
+   
+
+}
+
 
