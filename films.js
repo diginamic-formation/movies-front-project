@@ -57,19 +57,28 @@ async function filmDisplay(pageNumber) {
 console.log(filmData);
         document.querySelector(".films").innerHTML = filmData.content.map((film) => `
             <article class="col">
-                <div class="card">
+                <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
                     <img class="card-img-top" src=${film.picture} alt="image du film ${film.title}" />
                     <div class="card-body">
                         <h5 class="card-title text-truncate">${film.title}</h5>
-                        <p class="card-text text-truncate">${film.genres}</p>
+                        <p class="card-text text-truncate">${film.genres.join(", ")}</p>
                     </div>
                     <div class="card-footer">
-                        <a href="cart-film.html" class="btn btn-outline-dark detail-film" id=${film.id}>Voir</a>
+                        <button class="btn btn-outline-dark detail-film" id="${film.id}">Voir</button>
                     </div>
                 </div>
             </article>
         `).join("");
-
+        let boutons = document.querySelectorAll(".detail-film");
+        console.log(boutons);
+        // Attacher un écouteur d'événements à chaque bouton
+        boutons.forEach((bouton) => {
+            bouton.addEventListener("click", () =>{
+                console.log(bouton);
+                // Redirection vers la page 'cart-film.html' avec l'ID du bouton en tant que paramètre dans la chaîne de requête
+                window.location = `cart-film.html?${bouton.id}`
+            })
+        })
         currentPage = pageNumber;
         return filmData;
     } catch (error) {
