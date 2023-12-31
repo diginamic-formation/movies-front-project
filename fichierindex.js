@@ -1,62 +1,34 @@
 
-const urlAppPerson ="http://localhost:8080/persons/"
-const urlAppFilms = 'http://localhost:8080/films/all'
-const urlAppFilm = 'http://localhost:8080/films/'
-const urlApiFilm = 'http://localhost:8080/films/title/'
-const imdbUrl = 'https://api.themoviedb.org/3/find/?external_source=imdb_id'
+const urlAppGenre = 'http://localhost:8080/genres'
+const urlAppGenreId = 'http://localhost:8080/genres/'
+const urlAppGenreInsert = 'http://localhost:8080/genres/insertGenre'
+
 let vNom1 ="";
 let filmData = [];
-async function getPersonByid(id) {
-    let datas = await fetch(urlApp + id)
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.log(error))
 
-}
 
-async function getFilmById(id){
-    let datas = await fetch(`${urlAppFilm}{id}`)
+async function getGenreById(id){
+    let datas = await fetch(`${urlAppGenreId}{id}`)
     .then((response) => {return response.json()})
     .catch(error => console.log(error))
 return datas
 }
 
-async function getFilms(pageNumber, pageSize) {
-    let datas = await fetch(`${urlAppFilms}?page=${pageNumber}&size=${pageSize}`)
+async function getGenres() {
+    let datas = await fetch(`${urlAppGenre}`)
         .then((response) => {return response.json()})
+        .then(data =>{
+             genres = data
+            
+          
+        })
         .catch(error => console.log(error))
     
     return datas
 
 }
-async function getFilmByTitle(vNom){
-   
-    const complet = `${urlApiFilm}${vNom}` 
-    let datas = await fetch(complet)
-    .then((response) => {return response.json()})
-    .catch(error => console.log(error))
-    
-    return datas
 
-   
-}
-async function getPictures(imdbId) {
-    let datas = await fetch(imdbUrl, {
-        method: 'GET',
-        withCredentials: true,
-        headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4Yzg3NmFkNzE1NTlhYzQ0ZWRmN2FmODZiOWQ3NzkyNyIsInN1YiI6IjY1ODJkOWE3MDgzNTQ3NDQ2ZjNlODM2NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OXEejaV2yeDOEPnDrrpgz3seL0zwQdNYQti6UZt53hA',
-            'X-Auth-Token': '8c876ad71559ac44edf7af86b9d77927',
-            'accept': 'application/json'
-        }
-    })
-        .then(response => response.json())
-        .then(data => console.log(data.person_results[0].known_for))
-        .catch(error => console.log(error))
-    
-    return datas
-}
-async function choice(){
+/*async function choice(){
     
     const vChoix = document.querySelector("#choix").value;
     vNom = document.querySelector("#name").value;
@@ -64,27 +36,60 @@ async function choice(){
 
     console.log(vChoix)
     if (vChoix == "film"){
-        await filmDisplay(vNom)
+        await filmDisp(vNom)
     }else if(vChoix == "person"){
        // await personDisplay(vNom)
     }
 
-}
-
-
-const filmDisplay = async () => {
+}*/
+function saisie(){
     
-    filmData = await getFilmByTitle(vNom);
-    console.log(filmData);
-   
+    champs.style.visibility = "visible"
+}
+
+function insertGenre(){
+    alert("insert")
+    const newGenre = document.querySelector("#newGenre").value
+    alert(newGenre)
+    if (newGenre != null){
+        alert("champs ok")
+        
+    }
 
 }
-const personDisplay = async () => {
+
+const genreDisp = async () => {
+    const genreData = await getGenres();
+    let element =  document.querySelector("#genre")
     
-    filmData = await getFilmByTitle(vNom);
-    console.log(filmData);
+      genres.forEach(genre => {
+       
+      
+      // console.log(genre)
+        
+        element.innerHTML = element.innerHTML +  (`
+         <div >
+       
+         <article class="col">
+         <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 22rem;">
+             <div class="card-body">
+                 <h5 class="card-title text-truncate">${genre.nameGenre}</h5>
+                
+             </div>
+             <div class="card-footer">
+                 <button class="btn btn-outline-dark " id="${genre.id}">Les films</button>
+                 <button class="btn btn-primary " id="${genre.id}">Modifier</button>
+                 <button class="btn btn-danger " id="${genre.id}">Supprimer</button>
+ 
+             </div>
+         </div>
+         </article>
+         </div>
+         `)
+        }); 
    
-
-}
+    
+     
+} 
 
 
