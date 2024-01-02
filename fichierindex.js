@@ -47,46 +47,74 @@ function saisie(){
     champs.style.visibility = "visible"
 }
 
-function insertGenre(){
-    alert("insert")
-    const newGenre = document.querySelector("#newGenre").value
-    alert(newGenre)
-    if (newGenre != null){
-        alert("champs ok")
-        
+function validGenre(){
+    
+   
+    //alert("insert")
+    let newGenre = document.querySelector("#newGenre").value
+    newGenre = JSON.stringify({nameGenre: newGenre})
+
+    console.log(typeof(newGenre));
+        console.log(newGenre);
+    if (newGenre){
+       
+       const result =  fetch("http://localhost:8080/genres/insertGenre",
+                                {
+                                    method: "PUT",
+                                    body:{ 
+                                             newGenre
+                                    }
+                                }
+                               
+                            )
+                            .then( res => console.log(res));                       
+     
+    }
+    else{
+        alert("Saisie vide")
     }
 
 }
-
-const genreDisp = async () => {
-    const genreData = await getGenres();
-    let element =  document.querySelector("#genre")
+function delGenre(){
+   
+   
+}
+function modifGenre(){
     
-      genres.forEach(genre => {
-       
-      
-      // console.log(genre)
+   
+    
+}
+
+ const genreDisp = async () => {
+    
+        const genreData = await getGenres();
+        let element =  document.querySelector("#genre")
         
-        element.innerHTML = element.innerHTML +  (`
-         <div >
-       
-         <article class="col">
-         <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 22rem;">
-             <div class="card-body">
-                 <h5 class="card-title text-truncate">${genre.nameGenre}</h5>
-                
-             </div>
-             <div class="card-footer">
-                 <button class="btn btn-outline-dark " id="${genre.id}">Les films</button>
-                 <button class="btn btn-primary " id="${genre.id}">Modifier</button>
-                 <button class="btn btn-danger " id="${genre.id}">Supprimer</button>
- 
-             </div>
-         </div>
-         </article>
-         </div>
-         `)
-        }); 
+        genres.forEach(genre => {
+        
+        
+        // console.log(genre)
+            
+            element.innerHTML +=  (`
+            <div >
+        
+                <article class="col">
+                    <div class="card shadow p-3 mb-5 bg-body-tertiary rounded bg-primary-subtle" style="width: 22rem;">
+                        <div class="card-body ">
+                            <h5 class="card-title text-truncate">${genre.nameGenre}</h5>
+                            
+                        </div>
+                        <div class="card-footer">
+                            <input id="essai" name = "essai" value=${genre.id}></input>
+                            <button class="btn btn-outline-dark " >Les films</button>
+                            <button type ="submit" class="btn btn-outline-primary "  onclick = "modifGenre() ">Modifier </button>
+                            <button type ="submit" class="btn btn-outline-danger "  onclick = "delGenre()">Supprimer </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            `)
+            }); 
    
     
      
