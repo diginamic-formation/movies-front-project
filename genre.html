@@ -90,8 +90,9 @@
       </nav>
       </header>
          
-   <!--       insertion données javascript       -->
+  
 
+     <section id = "afficheGenre">
       
         <H2> Les genres de film</h2>
           <br/>
@@ -100,42 +101,49 @@
             <button class="btn btn-outline-dark" onclick ="saisie()">Ajouter un genre</button>
             <div id="champs" style="visibility : hidden">
               &nbsp
-           
+          
               <input type="text" name="newGenre" id="newGenre"></input>
               <button class="btn btn-primary" onclick ="addGenre()">Valider l'ajout</button>
             </div>
           </div>
           <br/> 
-      <section id ="genre" class=" row row-cols-1 row-cols-md-4 gy-4 my-3">
-      
-       
+                 <!--       insertion données javascript       -->
+          <section id ="genre" class=" row row-cols-1 row-cols-md-4 gy-4 my-3">
+            
+            
+          </section>
+          <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Launch demo modal
+            </button>
+            
+            <!-- Modal -->
+          
+            <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLabel">Modification Genre</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" id="modifmodal">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Quitter</button>
+                    <button type="button" class="btn btn-primary" onclick ="updateGenre()">Sauver</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </section>
+      </section> 
+      <!--affichage film by genre-->
+      <section id="afficheFilmGenre" class=" row row-cols-1 row-cols-md-4 gy-4 my-3">
+
       </section>
-     <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
-      </button>
-      
-      <!-- Modal -->
-    
-      <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="ModalLabel">Modification Genre</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body" id="modifmodal">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Quitter</button>
-              <button type="button" class="btn btn-primary" onclick ="updateGenre()">Sauver</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      </section>
+
        
     
     

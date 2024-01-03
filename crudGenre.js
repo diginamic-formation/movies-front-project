@@ -1,7 +1,7 @@
 
 const urlAppGenre = 'http://localhost:8080/genres'
 const urlAppGenreId = 'http://localhost:8080/genres/'
-const urlAppGenreInsert = 'http://localhost:8080/genres/insertGenre'
+const urlAppGenreInsert = 'http://localhost:8080/genres/add'
 
 /**getGenreById
  * non utilisé
@@ -45,8 +45,8 @@ async function getFilmsByidGenre(idGenr) {
     let datas = await fetch(`http://localhost:8080/genres/${idGenr}/films`)
         .then((response) => {return response.json()})
         .then(data =>{
-             films = data
-              console.log(films);
+             films = data.content
+              //console.log(films);
           
         })
         .catch(error => console.log(error))
@@ -68,7 +68,7 @@ function addGenre() {
     let newGenre = document.querySelector("#newGenre").value
     if (newGenre) {
 
-        const result = fetch("http://localhost:8080/genres/insertGenre",
+        const result = fetch("http://localhost:8080/genres/add",
             {
                 headers: {
                     'Accept': 'application/json',
