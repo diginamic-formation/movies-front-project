@@ -1,19 +1,19 @@
-const urlAppFilms = "http://localhost:8080/films/all";
+const urlAppActors = "http://localhost:8080/persons/all";
 const API_KEY = "8c876ad71559ac44edf7af86b9d77927";
 
 const pageSize = 12;
 let totalPageCount = 332; // Nombre total de pages
 let currentPage = 0;
 
-async function getFilms(pageNumber) {
+async function getActors(pageNumber) {
   try {
     const response = await fetch(
-      `${urlAppFilms}?page=${pageNumber}&size=${pageSize}`
+      `${urlAppActors}?page=${pageNumber}&size=${pageSize}`
     );
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching films:", error);
+    console.error("Error fetching actors:", error);
     throw error;
   }
 }
@@ -25,8 +25,9 @@ function getPictures(imdbId) {
     .then((response) => response.json())
     .then((data) => {
       for (i in data) {
-        if (data[i][0]) {
-          return `https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${data[i][0].poster_path}`;
+        if (data[i][0] && data[i][0].profile_path) {
+          console.log(data);
+          return `https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${data[i][0].profile_path}`;
         }
       }
       throw new Error("Poster Not Found");
@@ -45,37 +46,35 @@ function getPictureFromOmDbApi(imdbId) {
     });
 }
 
-async function filmDisplay(pageNumber) {
+async function actorDisplay(pageNumber) {
   try {
     if (pageNumber < 0 || pageNumber > totalPageCount) {
       return; // Ne rien faire si la page demandée est en dehors des limites
     }
 
-    const filmData = await getFilms(pageNumber);
-
-    for (film of filmData.content) {
+    const actorData = await getActors(pageNumber);
+    for (actor of actorData.content) {
       const picture = await Promise.any([
-        getPictureFromOmDbApi(film.referenceNumber),
-        getPictures(film.referenceNumber),
+        getPictureFromOmDbApi(actor.referenceNumber),
+        getPictures(actor.referenceNumber),
       ])
         .then((picture) => picture)
         .catch((e) => "images/no-poster-available.jpg");
-      film.picture = picture;
+      actor.picture = picture;
     }
 
-    // console.log(filmData);
-    document.querySelector(".films").innerHTML = filmData.content
+    console.log(actorData);
+    document.querySelector(".actors").innerHTML = actorData.content
       .map(
-        (film) => `
+        (actor) =>
+          `
             <article class="col">
                 <div class="card">
-                    <img class="card-img-top" src=${film.picture} alt="image du film ${film.title}" />
-                    <div class="card-body">
-                        <h5 class="card-title text-truncate">${film.title}</h5>
-                        <p class="card-text text-truncate">${film.genres}</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="cart-film.html" class="btn btn-outline-dark detail-film" id=${film.id}>Voir</a>
+                <div class="card-body">
+                    <img class="card-img-top" src=${actor.picture} alt="" />
+                      <h5 class="card-title">${actor.fullName}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">${actor.birthday}</h6>
+                      <a href="actor.html?id=${actor.referenceNumber}" class="card-link">Voir Profile</a>
                     </div>
                 </div>
             </article>
@@ -84,19 +83,19 @@ async function filmDisplay(pageNumber) {
       .join("");
 
     currentPage = pageNumber;
-    return filmData;
+    return actorData;
   } catch (error) {
-    console.error("Error displaying films:", error);
+    console.error("Error displaying actors:", error);
     throw error;
   }
 }
 
 document
   .getElementById("prev")
-  .addEventListener("click", () => filmDisplay(currentPage - 1));
+  .addEventListener("click", () => actorDisplay(currentPage - 1));
 document
   .getElementById("next")
-  .addEventListener("click", () => filmDisplay(currentPage + 1));
+  .addEventListener("click", () => actorDisplay(currentPage + 1));
 
 // Initial display
-filmDisplay(currentPage);
+actorDisplay(currentPage);

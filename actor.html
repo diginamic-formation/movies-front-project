@@ -19,49 +19,30 @@
     </header>
     <main class="main-container">
       <section class="actor-identity">
-        <img class="actor-image" src="img-actor/al_pacino.png" alt="" />
+        <div class="actor-image"></div>
         <ul>
           <span id="edit-icon" class="edit-icon">✏️</span>
           <div id="edit-modal" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
               <form id="edit-movie-form">
-                <label for="name">Nom:</label>
+                <label for="name">Identité:</label>
                 <input type="text" id="name" name="name" />
-                <label for="firstName">Prénom:</label>
-                <input type="text" id="firstName" name="firstName" />
                 <label for="dateBirth">Date de naissance:</label>
                 <input type="text" id="dateBirth" name="dateBirth" />
                 <label for="placeBirth">Lieu de naissance:</label>
                 <input type="text" id="placeBirth" name="placeBirth" />
-                <label for="height">Taille:</label>
-                <input type="text" id="height" name="height" />
                 <label for="citizenship">Nationalité:</label>
                 <input type="text" id="citizenship" name="citizenship" />
-
+                <label for="height">Taille:</label>
+                <input type="text" id="height" name="height" />
                 <button type="submit">Update</button>
               </form>
             </div>
           </div>
         </ul>
-        <ul>
-          Nom: Pacino
-        </ul>
-        <ul>
-          Prenom: Al
-        </ul>
-        <ul>
-          Date de naissance: 12/12/1961
-        </ul>
-        <ul>
-          Lieu de naissance: Chicago
-        </ul>
-        <ul>
-          Taille: 1,85 m
-        </ul>
-        <ul>
-          Nationalité: Américaine
-        </ul>
+        <!-- Actor Info -->
+        <div class="actor-details row row-cols-1 row-cols-md-4 gy-4 my-3"></div>
       </section>
       <section class="actor-info">
         <section class="actor-biography">

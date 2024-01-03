@@ -9,7 +9,8 @@
 
 .actor-identity {
   /* height: 100vh; */
-  /* display: block; */
+  display: flex;
+  flex-direction: column;
   width: 20vw;
   background-color: lightgray;
   /* border: 1px solid red; */
@@ -37,7 +38,7 @@
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
-  max-width: 50%;
+  max-width: 100%;
 }
 
 #movies-list {
@@ -118,19 +119,19 @@
 }
 
 .modal {
-    display: none;
+  display: none;
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
