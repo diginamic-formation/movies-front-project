@@ -9,12 +9,19 @@
 async function choice(){
     
     const vChoix = document.querySelector("#choix").value;
-    vNom = document.querySelector("#name").value;
-    //alert(vChoix)
-
-    console.log(vChoix)
+    const vNom = document.querySelector("#name").value;
+   
     if (vChoix == "film"){
-        await filmDisp(vNom)
+      let datas =   await fetch(`http://localhost:8080/films/title/${vNom}`)
+      .then((response) => {return response.json()})
+      .then(data =>{
+           filmByT = data.content
+          
+                  })
+      .catch(error => console.log(error))
+  
+        return datas
+
     }else if(vChoix == "person"){
        // await personDisplay(vNom)
     }
@@ -62,34 +69,38 @@ const genreDisp = async () => {
     genres.forEach(genre => {
     
    
-    
-    // bouton les films modifiés<button class="btn btn-outline-dark " onclick = "getFilmsByidGenre(${genre.id})" >Les films</button>
-        element.innerHTML +=  (`
-        <div >
-    
-            <article class="col">
-                <div class="card shadow p-3 mb-5 bg-body-tertiary rounded bg-primary-subtle" style="width: 22rem;">
-                    <div class="card-body ">
-                    <img class="card-img" src="/images/${genre.id}.jpeg" alt="Card image" width="250" height="200">
-                        <h5 class="card-title text-truncate" name="titre">${genre.nameGenre}</h5>
-                        <input type="hidden" id="${genre.nameGenre}" name = "${genre.nameGenre}" value ="${genre.nameGenre}"></input>
-                    </div>
-                    <div class="card-footer">
-                       
-                        <button class="btn btn-outline-dark " onclick = "filmByGenreDisp(${genre.id}, '${genre.nameGenre}')" >Les films</button>
-                        <button "button" class="btn btn-primary" data-toggle="modal" data-target="#Modal" onclick = "modifGenre(${genre.id}, '${genre.nameGenre}') ">Modifier </button>
-                        <button type ="submit" class="btn btn-outline-danger "  onclick = "deleteGenre(${genre.id})">Supprimer </button>
-                    </div>
+               
+          element.innerHTML +=  (`
+                <div >
+            
+                    <article class="col">
+                        <div class="card shadow p-3 mb-5 bg-body-tertiary rounded bg-primary-subtle" style="width: 22rem;">
+                            <div class="card-body ">
+                        
+                                    <img class="card-img" src="/images/${genre.id}.jpeg" alt="image genre de film ${genre.nameGenre}" width="250" height="200">
+                                    <h5 class="card-title text-truncate" name="titre">${genre.nameGenre}</h5>
+                                    <input type="hidden" id="${genre.nameGenre}" name = "${genre.nameGenre}" value ="${genre.nameGenre}"></input>
+                                </div>
+                                <div class="card-footer">
+                                
+                                    <button class="btn btn-outline-dark " onclick = "filmByGenreDisp(${genre.id}, '${genre.nameGenre}')" >Les films</button>
+                                    <button "button" class="btn btn-primary" data-toggle="modal" data-target="#Modal" onclick = "modifGenre(${genre.id}, '${genre.nameGenre}') ">Modifier </button>
+                                    <button type ="submit" class="btn btn-outline-danger "  onclick = "deleteGenre(${genre.id})">Supprimer </button>
+                                </div>
+                            </div>
+                        </article>
                 </div>
-            </article>
-        </div>
-        `)
-
+            `)
+     
+          
         }); 
-
-
  
 } 
+/**Afficher les films par genre dans genre.html
+ * 
+ * @param {*} idGenr id du genre
+ * @param {*} nameGenr nom du genre
+ */
 
 async function filmByGenreDisp(idGenr, nameGenr) {
     
@@ -132,7 +143,37 @@ async function filmByGenreDisp(idGenr, nameGenr) {
 
         }; 
 
-        
+    
+ 
+} 
+async function filmBytitre() {
+
+    window.location = `rechercheFilm.html`
+    let elTitre =  document.querySelector("#filmTitre") 
+    
+    
+    //const picture = await getPictures(filmByT.referenceNumber);
+
+    filmByT.picture = picture;
+    console.log(filmByT.picture);
+    elTitre.innerHTML +=  (`
+        <div >
+           
+            <article class="col">
+                <div class="card shadow p-3 mb-5 bg-body-tertiary rounded bg-primary-subtle" style="width: 22rem;">
+                    <div class="card-body ">
+                     fdfdffdfdfd
+                    </div>
+                    <div class="card-footer">
+                      
+                    </div>
+                </div>
+            </article>
+        </div>
+        `)
+
+       
+    
  
 } 
 
