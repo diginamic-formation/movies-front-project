@@ -59,7 +59,7 @@ async function affichageQuiz(data){
         acteur2 = data.actor2
         film    = data.films
         console.log(acteur2.referenceNumber);
-        texteQuiz = `A la recherche d'un film commun à :`
+        texteQuiz = `Dans quel film ont-ils joué ensemble ?`
         texteSolution = `Le film est :`
 
         const pictureFilm = await getPictures(film[0].referenceNumber);
@@ -78,7 +78,7 @@ async function affichageQuiz(data){
                 <article class="col">
                     <div class="card shadow p-3 mb-5 bg-body-tertiary rounded " style="width: 45rem;">
                     <h5 class="card-title text-truncate" name="titre">${texteQuiz}</h5>
-                        <div class="card-body d-flex">
+                        <div class="card-body d-flex justify-content-between">
                             
                             <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
                                
@@ -86,7 +86,7 @@ async function affichageQuiz(data){
                                 <img class="card-img-top" src=${acteur1.picture} alt="image ${acteur1.fullName}" />
     
                             </div>
-                            <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+                            <div class="card shadow p-3 mb-5 bg-body-tertiary rounded justify-content-center">
     
                                 <h5>${acteur2.fullName}</h5>
                                 <img class="card-img-top" src=${acteur2.picture} alt="image ${acteur2.fullName}" />
@@ -107,19 +107,23 @@ async function affichageQuiz(data){
         affSolution.innerHTML =""
         affSolution.innerHTML += 
         (`
-            <div style="width: 45rem; max-height = 90px">
-                <article class="col" style="width: 45rem; max-height = 90px">
+            <div style="width: 45rem; ">
+                <article class="col" style="width: 45rem; max-height = 250px">
                     <div class="card shadow p-3 mb-5 bg-body-tertiary rounded h-75" >
                         <h5 class="card-title text-truncate" name="titre">${texteSolution}</h5>
-                        <div class="card-body d-flex justify-center" style="width: 45rem; height = 90px">
+                        <h5>${film[0].title}</h5>
+                        
+                        <div class="card-body d-flex justify-content-center justify-item-center" style="width: 45rem; height = 120px">
                             
-                            <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+                            <div class="card shadow p-3 mb-5 bg-body-tertiary rounded justify-content-center" >
                                
-                                <h5>${film[0].title}</h5>
-                                <img class="card-img-top" src=${film[0].picture} alt="image ${film[0].title}" />
+                               <img class="card-img-top" src=${film[0].picture} alt="image ${film[0].title}" />
     
                             </div>
                            
+                        </div>
+                        <div class="card-footer">
+                        
                         </div>
                             
                     </div>
@@ -138,8 +142,8 @@ async function affichageQuiz(data){
        film1=data.film1;
        film2=data.film2;
        console.log(acteur);
-        texteQuiz = `A la recherche d'un acteur commun aux films :`
-        texteSolution ="La personne est "
+        texteQuiz = `Qui est l'acteur ou l'actrice commun(e) aux films :`
+        texteSolution ="L'acteur ou l'actrice est "
         const pictureActeur = await getPictActeur(acteur[0].referenceNumber);
         acteur[0].picture = pictureActeur
         const pictureFilm1 = await getPictures(film1.referenceNumber);
@@ -154,8 +158,7 @@ async function affichageQuiz(data){
                 <article class="col">
                     <div class="card shadow p-3 mb-5 rounded " style="width: 45rem;">
                     <h5 class="card-title text-truncate" name="titre">${texteQuiz}</h5>
-                        <div class="card-body d-flex">
-                            
+                        <div class="card-body d-flex justify-content-between">
                             <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
                                
                                 <h5>${film1.title}</h5>
@@ -187,7 +190,7 @@ async function affichageQuiz(data){
                 <article class="col">
                     <div class="card shadow p-3 mb-5 bg-body-tertiary rounded " style="width: 45rem;">
                     <h5 class="card-title text-truncate" name="titre">${texteSolution}</h5>
-                        <div class="card-body d-flex">
+                        <div class="card-body d-flex justify-content-center justify-item-center">
                             
                             <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
                                

@@ -6,27 +6,7 @@
  * 
  */
 
-async function choice(){
-    
-    const vChoix = document.querySelector("#choix").value;
-    const vNom = document.querySelector("#name").value;
-   
-    if (vChoix == "film"){
-      let datas =   await fetch(`http://localhost:8080/films/title/${vNom}`)
-      .then((response) => {return response.json()})
-      .then(data =>{
-           filmByT = data.content
-          
-                  })
-      .catch(error => console.log(error))
-  
-        return datas
 
-    }else if(vChoix == "person"){
-       // await personDisplay(vNom)
-    }
-
-}
 
 /**
  * rendre visible les champs de saisie ajout nouveau genre
@@ -146,36 +126,6 @@ async function filmByGenreDisp(idGenr, nameGenr) {
     
  
 } 
-async function filmBytitre() {
-
-    window.location = `rechercheFilm.html`
-    let elTitre =  document.querySelector("#filmTitre") 
-    
-    
-    //const picture = await getPictures(filmByT.referenceNumber);
-
-    filmByT.picture = picture;
-    console.log(filmByT.picture);
-    elTitre.innerHTML +=  (`
-        <div >
-           
-            <article class="col">
-                <div class="card shadow p-3 mb-5 bg-body-tertiary rounded bg-primary-subtle" style="width: 22rem;">
-                    <div class="card-body ">
-                     fdfdffdfdfd
-                    </div>
-                    <div class="card-footer">
-                      
-                    </div>
-                </div>
-            </article>
-        </div>
-        `)
-
-       
-    
  
-} 
-
 
 
