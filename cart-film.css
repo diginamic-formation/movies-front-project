@@ -3,3 +3,32 @@
 .summary {
     text-align: justify;
 }
+
+.affichFilm {
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+
+.modifFilm {
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modifFilm:hover{
+    color:#0d6efd;
+    border-top: 1px solid #0d6efd;
+}
+
+.formulaire {
+    margin-top: 1rem;
+}
+#footer {
+    display: none;
+}
+@media screen and (min-width: 1024px) {
+    .col-md-4 {
+        width: 22%;
+    }
+}
