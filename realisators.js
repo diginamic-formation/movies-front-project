@@ -1,4 +1,4 @@
-const urlAppActors = "http://localhost:8080/actors";
+const urlAppActors = "http://localhost:8080/realisators";
 const API_KEY = "8c876ad71559ac44edf7af86b9d77927";
 
 const pageSize = 12;
@@ -74,7 +74,7 @@ async function actorDisplay(pageNumber) {
                     <img class="card-img-top" src=${actor.picture} alt="" />
                       <h5 class="card-title">${actor.fullName}</h5>
                       <h6 class="card-subtitle mb-2 text-muted">${actor.birthday}</h6>
-                      <a href="actor.html?id=${actor.id}" class="card-link">Voir Profile</a>
+                      <a href="realisator.html?id=${actor.id}" class="card-link">Voir Profile</a>
                     </div>
                 </div>
             </article>

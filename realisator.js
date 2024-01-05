@@ -1,5 +1,5 @@
-const urlAppActor = "http://localhost:8080/actors/";
-const urlActor = "http://localhost:8080/actors/";
+const urlAppActor = "http://localhost:8080/realisators/";
+const urlActor = "http://localhost:8080/realisators/";
 const API_KEY = "8c876ad71559ac44edf7af86b9d77927";
 
 function getQueryParam(param) {
@@ -92,10 +92,10 @@ async function ActorDisplay(actorId) {
   document.querySelector(".actor-details").innerHTML = `
                   <article class="col">
                     <ul class="list-group">
-                      <li class="list-group-item">Identité: ${actorData.fullName}</li>
-                      <li class="list-group-item">Date de Naissance: ${actorData.birthday}</li>
-                      <li class="list-group-item">Lieu de Naissance: ${actorData.placeName}</li>
-                      <li class="list-group-item">Pays: ${actorData.country}</li>
+                      <li class="list-group-item">${actorData.fullName}</li>
+                      <li class="list-group-item">${actorData.birthday}</li>
+                      <li class="list-group-item">${actorData.placeName}</li>
+                      <li class="list-group-item">${actorData.country}</li>
                     </ul>
                   </article>
               `;

@@ -1,5 +1,5 @@
 .main-container {
-  border: 3px solid gray;
+  /* border: 3px solid gray; */
   display: flex;
   width: 100vw;
   margin: auto;
@@ -41,7 +41,9 @@
   max-width: 100%;
 }
 
-#movies-list {
+.scrollable {
+  height: 550px;
+  overflow: scroll;
   display: grid;
   grid-template-rows: repeat(auto-fill, 1fr);
   gap: 20px;
@@ -98,12 +100,26 @@
 
 .modal-content form {
   text-align: left;
+  align-content: center;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
 }
 
 .modal-content form label,
 .modal-content form input {
   display: block;
   margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .modal-content form button {
@@ -119,7 +135,16 @@
 }
 
 .modal {
-  display: none;
+  display: none; /* Hidden by default */
+  position: relative; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 .close {
