@@ -6,6 +6,7 @@ let film1   = ""
 let film2   = ""
 let actor   = ""
 let texte   = ""
+const API_KEY_Actor = "8c876ad71559ac44edf7af86b9d77927";
 async function quizChoice(choix){
        //recherche d'acteurs  `http://localhost:8080/quiz/films/generate`
       //recherche dun film  `http://localhost:8080/quiz/actors/generate`
@@ -57,14 +58,18 @@ async function affichageQuiz(data){
         acteur1 = data.actor1
         acteur2 = data.actor2
         film    = data.films
-        //console.log(film[].title);
+        console.log(acteur2.referenceNumber);
         texteQuiz = `A la recherche d'un film commun à :`
         texteSolution = `Le film est :`
 
         const pictureFilm = await getPictures(film[0].referenceNumber);
         film[0].picture = pictureFilm
-        /*const pictureActeur2 = await getPictures(acteur2.referenceNumber);
-        acteur1.picture = pictureActeur2*/
+        const pictureActeur2 = await getPictActeur(acteur2.referenceNumber);
+        acteur2.picture = pictureActeur2
+
+        const pictureActeur1 = await getPictActeur(acteur1.referenceNumber);
+        acteur1.picture = pictureActeur1
+
         let affQuiz= document.querySelector("#quizEnigme")
         affQuiz.innerHTML =""
         affQuiz.innerHTML += 
@@ -129,12 +134,14 @@ async function affichageQuiz(data){
        console.log("----     "); 
        console.log(film1);
        console.log("----     ");
-       actor=data.actors
+       acteur=data.actors
        film1=data.film1;
        film2=data.film2;
-       console.log(actor);
+       console.log(acteur);
         texteQuiz = `A la recherche d'un acteur commun aux films :`
         texteSolution ="La personne est "
+        const pictureActeur = await getPictActeur(acteur[0].referenceNumber);
+        acteur[0].picture = pictureActeur
         const pictureFilm1 = await getPictures(film1.referenceNumber);
         film1.picture = pictureFilm1
         const pictureFilm2 = await getPictures(film2.referenceNumber);
@@ -184,8 +191,8 @@ async function affichageQuiz(data){
                             
                             <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
                                
-                                <h5>${actor[0].fullName}</h5>
-                                <img class="card-img-top" src=${actor[0].picture} alt="image ${actor[0].fullName}" />
+                                <h5>${acteur[0].fullName}</h5>
+                                <img class="card-img-top" src=${acteur[0].picture} alt="image ${acteur[0].fullName}" />
     
                             </div>
                            
@@ -208,3 +215,18 @@ async function affichageQuiz(data){
 function afficheSolution(){
     quizSolution.removeAttribute("hidden")
 }
+function getPictActeur(imdbId) {
+    return fetch(
+      `https://api.themoviedb.org/3/find/${imdbId}?external_source=imdb_id&api_key=${API_KEY_Actor}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        for (i in data) {
+          if (data[i][0]) {
+            return `https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${data[i][0].profile_path}`;
+          }
+        }
+       // throw new Error("Poster Not Found");
+      });
+  }
+ 
