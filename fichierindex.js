@@ -67,25 +67,27 @@ const genreDisp = async () => {
     
     
     genres.forEach(genre => {
-    
-   
-               
           element.innerHTML +=  (`
                 <div >
             
                     <article class="col">
                         <div class="card shadow p-3 mb-5 bg-body-tertiary rounded bg-primary-subtle" style="width: 22rem;">
                             <div class="card-body ">
-                        
+                                    
                                     <img class="card-img" src="/images/${genre.id}.jpeg" alt="image genre de film ${genre.nameGenre}" width="250" height="200">
                                     <h5 class="card-title text-truncate" name="titre">${genre.nameGenre}</h5>
                                     <input type="hidden" id="${genre.nameGenre}" name = "${genre.nameGenre}" value ="${genre.nameGenre}"></input>
                                 </div>
-                                <div class="card-footer">
-                                
-                                    <button class="btn btn-outline-dark " onclick = "filmByGenreDisp(${genre.id}, '${genre.nameGenre}')" >Les films</button>
-                                    <button "button" class="btn btn-primary" data-toggle="modal" data-target="#Modal" onclick = "modifGenre(${genre.id}, '${genre.nameGenre}') ">Modifier </button>
-                                    <button type ="submit" class="btn btn-outline-danger "  onclick = "deleteGenre(${genre.id})">Supprimer </button>
+                                <div class="card-footer d-flex justify-content-between">
+                                    <div>
+                                        <button class="btn btn-outline-dark " onclick = "openFimsByGenrePage(${genre.id},'${genre.nameGenre}')" >Films</button>
+                                        <button class="btn btn-outline-dark " onclick = "openActeursByGenrePage(${genre.id},'${genre.nameGenre}')" >Acteurs</button>
+                                    </div>
+                                    <div>
+                                        <button "button" class="btn btn-lg btn-outline-success" data-toggle="modal" data-target="#Modal" onclick = "modifGenre(${genre.id}, '${genre.nameGenre}') "> <i class="fas fa-pencil-alt"></i> </button>
+                                        <button type ="submit" class="btn btn-lg btn-outline-danger "  onclick = "deleteGenre(${genre.id})"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </article>
@@ -145,7 +147,18 @@ async function filmByGenreDisp(idGenr, nameGenr) {
 
     
  
-} 
+}
+
+openFimsByGenrePage = (id,name) => {
+    window.location.href = `genre/movies.html?id=${id}&name=${name}` 
+        
+}
+
+openActeursByGenrePage = (id,name) => {
+    window.location.href = `genre/artists.html?id=${id}&name=${name}` 
+        
+}
+
 async function filmBytitre() {
 
     window.location = `rechercheFilm.html`
@@ -176,6 +189,5 @@ async function filmBytitre() {
     
  
 } 
-
 
 

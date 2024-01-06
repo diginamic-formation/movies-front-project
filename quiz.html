@@ -12,6 +12,10 @@
             href="https://v5.getbootstrap.com/docs/5.0/examples/album/">
 
         <!-- Bootstrap core CSS -->
+        <script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
         <link rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
             integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
@@ -20,14 +24,12 @@
             src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
             integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
             crossorigin="anonymous"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
+       
         <script src="/films.js"></script>
         <script src="/fichierindex.js"></script>
         <link href="/assets/css/all.css" rel="stylesheet">
         <link href="/css/quiz.css" rel="stylesheet">
+        <script src="/quiz.js"></script>
 
         <style>
     .bd-placeholder-img {
@@ -80,12 +82,10 @@
                                 href="genre.html">Genres</a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link text-white "
-                                href="actor.html">Acteurs</a>
+                          <a class="nav-link text-white " href="actors.html">Acteurs</a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link text-white "
-                                href="#">Réalisateurs</a>
+                          <a class="nav-link text-white " href="realisators.html">Réalisateurs</a>
                         </li>
                         <li class="nav-item text-white">
                             <a class="nav-link text-white"
@@ -112,55 +112,56 @@
                     <button class="btn btn-outline-success" type="submit"
                         data-toggle="modal" data-target="#exampleModal"
                         onclick="choice()">Search</button>
+                </br>
 
                 </div>
             </div>
 
         </nav>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Movie
-                            title</h5>
-                        <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save
-                            changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
     </header>
 
     <main>
 
         <section class=" text-center ">
-
+           
             <div id="quiz">
                
                             
                 <div class="text-white">
                     <span>Vous pensez avoir ce qu’il faut pour être un cinéphile digne de ce nom?</br>
-                        Clickez sur le bouton GENERER pour générer 2 affiches de films </br>et devinez tous les acteurs en commun.</br>
-                        Puis, appuyer une seconde fois sur le bouton SOLUTION pour vérifier vos réponses.</br>
-                        <button type="button" class="btn btn-outline-warning btn-lg">Générer un quiz</button>
-                    </span>
-                   
+                        Clickez sur ce bouton 
+                        <div class="dropdown">
+                            <button class="btn btn-outline-danger dropdown-toggle" type="button" id="quizou" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Générer un Quiz
+                            </button>
+                            <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <button id = "quizou1" type ="submit" value ="film" class="dropdown-item" onclick="quizChoice(quizou1)">Films</button>
+                              <button id = "quizou2" type ="submit" value ="acteur" class="dropdown-item" onclick="quizChoice(quizou2)">Acteurs</button>
+                            </div>
+                        </div>
+                        
+                        pour avoir des quizs </br>et devinez les réponses.</br>
+                        Puis, appuyer sur le bouton <button type="button" class="btn btn-outline-success "</button onclick="afficheSolution()">Solution</button> pour vérifier vos réponses.</br 
+                    </span> 
+                </br>
                 </div>
-                <button type="button" class="btn btn-outline-primary btn-lg">Solution</button>
-            </div>    
-            </section>
+                <!--insert quiz-->
+                <div id="affichageQuiz" class="d-flex justify-content-center" style ="width:100%">
+                    <div id="quizEnigme" style ="width:40%"   >
+                        
+                    </div>
+                    <div id="quizSolution" style ="width:40%"   >
+                        
+                    </div>
+                </div> 
+                
+                
+            </div>  
+         
+            
+           
+        </section>
         </main>
 
         <footer class="text-muted py-15 align-items-center">
@@ -186,5 +187,9 @@
         </footer>
 
     </body>
+    <script src="/films.js"></script>
+  <script src="/fichierindex.js"></script>
+  <script src="/rechercheFilm.js"></script>
+  <link href="/assets/css/all.css" rel="stylesheet">
 
 </html>

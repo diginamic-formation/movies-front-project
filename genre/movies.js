@@ -1,21 +1,23 @@
-
-const urlAppFilms = 'http://localhost:8080/films';
+const urlAppGenre = 'http://localhost:8080/genres';
 const API_KEY = '8c876ad71559ac44edf7af86b9d77927';
 
-let GLOBAL_SEARCH = true;
+function extractQueryParams(){
+    return new URLSearchParams(window.location.search); 
+}
 
 const pageSize = 12;
-let totalPageCount = 332; // Nombre total de pages
+let totalPageCount = 1000  ; // Nombre total de pages
 let currentPage = 0;
 /**
  * Fonction asynchrone pour récupérer une liste de films depuis une API avec pagination.
  * @param {number} pageNumber - Le numéro de la page à récupérer.
  * @returns {Promise} - Une promesse résolue avec les données des films ou rejetée en cas d'erreur.
  */
-async function getFilms(pageNumber) {
+async function getFilmsByGenre(idGenre,genrePageNumber) {
     try {
-        const response = await fetch(`${urlAppFilms}?page=${pageNumber}&size=${pageSize}`);
+        const response = await fetch(`${urlAppGenre}/${idGenre}/films?page=${genrePageNumber}&size=${pageSize}`);
         const data = await response.json();
+        console.log(data);
         return data;
     } catch (error) {
         console.error('Error fetching films:', error);
@@ -23,17 +25,7 @@ async function getFilms(pageNumber) {
     }
 }
 
-async function getFilmsByPeriod(pageNumber, startYear, endYear) {
-    const url = `http://localhost:8080/films/period/year?start=${startYear}&end=${endYear}&page=${pageNumber}&size=${pageSize}`;
-    try {
-        const response = await fetch(`${url}`);
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.log('Error fetching filmsByPeriod:', error);
-        throw error;
-    }
-}
+
 /**
  * Fonction asynchrone pour récupérer le chemin du poster d'une entité à partir de l'ID IMDb.
  * @param {string} imdbId - L'ID IMDb de l'entité.
@@ -72,7 +64,7 @@ async function filmDisplay(pageNumber, filmData) {
         for (const film of filmData.content) {
             const picture = await getPictures(film.referenceNumber)
                 .then((picture) => picture)
-                .catch((e) => "images/no-poster-available.jpg");
+                .catch((e) => "../images/no-poster-available.jpg");
             film.picture = picture;
         }
         document.querySelector(".films").innerHTML = filmData.content.map((film) => `
@@ -81,7 +73,7 @@ async function filmDisplay(pageNumber, filmData) {
                     <img class="card-img-top" src=${film.picture} alt="image du film ${film.title}" />
                     <div class="card-body">
                         <h5 class="card-title text-truncate">${film.title}</h5>
-                        <p class="card-text text-truncate">${film.genres.join(", ")}</p>
+                        <h6 class="card-text text-truncate font-weight-bold">Année : ${film.year}</h6>
                         <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="${film.rating * 10}" aria-valuemin="0" aria-valuemax="100">
                         <div class="progress-bar progress-bar-striped" style="width: ${film.rating * 10}%">${film.rating * 10} %</div>
                 </div>
@@ -96,6 +88,7 @@ async function filmDisplay(pageNumber, filmData) {
         document.querySelector("#pagination-counter").innerHTML=`
         <li class="page-item enabled"><a class="page-link">${filmData.pageable.pageNumber+1} / ${filmData.totalPages}</a></li>
         `
+        console.log(filmData);
         document.querySelector("#films-size").innerHTML=`
         <p class="font-weight-bold">Résultat : ${filmData.totalElements} films</p>
         `
@@ -105,7 +98,7 @@ async function filmDisplay(pageNumber, filmData) {
         boutons.forEach((bouton) => {
             bouton.addEventListener("click", () => {
                 // Redirection vers la page 'cart-film.html' avec l'ID du bouton en tant que paramètre dans la chaîne de requête
-                window.location = `cart-film.html?${bouton.id}`
+                window.location = `../cart-film.html?${bouton.id}`
             })
         })
         currentPage = pageNumber;
@@ -125,74 +118,30 @@ function showNavPagination() {
     navPagination.style.display = "block";
 }
 
-const footer = document.getElementById("footer");
-function showFooter(){
-    footer.style.display = "block";
-}
 // Ajouter un écouteur d'événements lorsque la page est complètement chargée
 window.addEventListener("load", function () {
-    // Définir un délai de 2 secondes
+    // Définir un délai de 5 secondes (vous pouvez ajuster cela selon vos besoins)
     const delaiEnSecondes = 2;
+
     // Afficher navPagination après le délai spécifié
     setTimeout(showNavPagination, delaiEnSecondes * 1000); // Convertir les secondes en millisecondes
-    this.setTimeout(showFooter,delaiEnSecondes* 1000 );
 });
 
+// Initial display
 
-async function getPeriodicDatas(pageNumber) {
+async function handleGenreMoviesPage(pageNumber) {
+    console.log("pageNumber : ", pageNumber);
+    idGenre = extractQueryParams().get("id")
 
-    start = parseInt(localStorage.getItem('start'))
-    end = parseInt(localStorage.getItem('end'))
-    const filmPData = await getFilmsByPeriod(pageNumber, start, end);
-    filmDisplay(pageNumber, filmPData);
-}
-
-async function getGlobalData(pageNumber) {
     if (pageNumber < 0 || pageNumber > totalPageCount) {
         return; // Ne rien faire si la page demandée est en dehors des limites
     }
-    const filmData = await getFilms(pageNumber);
+    const filmData = await getFilmsByGenre(idGenre,pageNumber);
     filmDisplay(pageNumber, filmData);
 }
 
-// Récupération de l'élément DOM pour le formulaire de mise à jour et le conteneur de message
-let updateFilmForm = document.getElementById("searchForm");
-updateFilmForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    GLOBAL_SEARCH = false;
-    // Récupération des valeurs des champs du formulaire
-    const start = document.getElementById("startYear").value;
-    const end = document.getElementById("endYear").value;
-    localStorage.setItem('start', start);
-    localStorage.setItem('end', end);
-    getPeriodicDatas(0);
-});
+document.title = `${extractQueryParams().get("name")} -- films`
+document.getElementById("prev").addEventListener("click", () => handleGenreMoviesPage(currentPage - 1));
+document.getElementById("next").addEventListener("click", () => handleGenreMoviesPage(currentPage + 1));
 
-console.log("cureent page : ", currentPage);
-getGlobalData(currentPage);
-
-document.getElementById("prev").addEventListener("click", () =>{
-    GLOBAL_SEARCH ? getGlobalData(currentPage - 1) : getPeriodicDatas(currentPage - 1)
-    document.getElementById('pageHeader').scrollIntoView({
-        behavior: 'smooth'
-    });
-});
-document.getElementById("next").addEventListener("click", () =>{ 
-    GLOBAL_SEARCH ? getGlobalData(currentPage + 1) : getPeriodicDatas(currentPage + 1)
-    document.getElementById('pageHeader').scrollIntoView({
-        behavior: 'smooth'
-    });
-});
-
-
-document.querySelector("#button-filter").addEventListener("click", () => {
-    document.querySelector("#searchForm").hidden = false
-    document.querySelector("#button-filter").hidden = true
-});
-
-document.querySelector("#button-annuler").addEventListener("click", () => {
-    document.querySelector("#searchForm").hidden = true
-    document.querySelector("#button-filter").hidden = false
-    GLOBAL_SEARCH=true
-    getGlobalData(0);
-});
+handleGenreMoviesPage(0);

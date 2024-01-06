@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content>
     <meta name="generator" content="Hugo 0.72.0">
-    <title>Accueil Films</title>
-
+    <title>Films</title>
+    <link rel="stylesheet" href="../films.css" />
     <link rel="canonical"
       href="https://v5.getbootstrap.com/docs/5.0/examples/album/">
-
+    
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
@@ -24,10 +24,6 @@
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
       integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
       crossorigin="anonymous"></script>
-    <script src="/films.js"></script>
-    <script src="/fichierindex.js"></script>
-    <link href="/assets/css/all.css" rel="stylesheet">
-
     <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -46,15 +42,14 @@
   </style>
 
   </head>
-
-  <body style="width: 100%" class="bg-dark ">
+  <body class="bg-light">
     <header style="width: 100%;">
       <nav class="navbar navbar-expand-lg bg-dark">
         <div class="navbar navbar-dark bg-dark shadow-sm">
           <div class="container">
             <a href="../index.html"
               class="navbar-brand d-flex align-items-center">
-              <img src="images/movie2.png" />
+              <img src="../images/movie2.png" />
               <strong>Movies</strong>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -69,23 +64,22 @@
           style="width:70%" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-white">
             <li class="nav-item ">
-              <a class="nav-link active " aria-current="page"
-                href="../index.html">🏠 Home</a>
+              <a class="nav-link text-white" href="../index.html">🏠 Home</a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link text-white " href="genre.html">Genres</a>
+              <a class="nav-link active text-info" href="../genre.html">Genres</a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link text-white " href="actors.html">Acteurs</a>
+              <a class="nav-link text-white " href="../actor.html">Acteurs</a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link text-white " href="realisators.html">Réalisateurs</a>
+              <a class="nav-link text-white " href="../realisateurs.html">Réalisateurs</a>
             </li>
             <li class="nav-item text-white">
-              <a class="nav-link text-white" href="films.html">Films</a>
+              <a class="nav-link text-white" href="../films.html">Films</a>
             </li>
             <li class="nav-item text-white">
-              <a class="nav-link text-white" href="quiz.html">Quiz</a>
+              <a class="nav-link text-white" href="../quiz.html">Quiz</a>
             </li>
           </ul>
         </div>
@@ -130,96 +124,23 @@
       </div>
     </div>
   </header>
-
-  <main>
-
-    <section class=" text-center ">
-
-      <div>
-        <img style="width: 100%"
-          src="/images/wick.png"
-          alt="John Wick4" />
-      </section>
-      <section>
-
-      </section>
-
-      <div class="album py-5 bg-dark">
-        <!-- <div class="container bg-dark">-->
-        <div class="row row-cols-1 row-cols-sm-4 row-cols-md-3 g-3">
-          <div class="col">
-            <div class="card shadow-sm">
-
-              <img style="width: 100%"
-                src="/images/extraction.png"
-                alt="extraction" />
-
-              <div class="card-body">
-
-                <p class="card-text">This is a wider card with supporting text
-                  below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button"
-                      class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button"
-                      class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <img style="width: 100%"
-                src="/images/Shutter.png"
-                alt="extraction" />
-              <div class="card-body">
-                <p class="card-text">Teddy Daniels and Chuck Aule, two US
-                  marshals, are sent to an asylum on a remote island in order to
-                  investigate the disappearance of a patient,... </p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button"
-                      class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button"
-                      class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-
-              <img style="width: 100%"
-                src="/images/beast.png"
-                alt="extraction" />
-
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text
-                  below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button"
-                      class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button"
-                      class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
+    <main class="container">
+      <div id="page-title">
+        
       </div>
-
+      <div id="films-size"></div>
+      <section class="films row row-cols-1 row-cols-md-4 gy-4 my-3"></section>
+      <nav aria-label="..." id="navPagination">
+        <ul class="pagination justify-content-center">
+          <li>
+            <button id="prev" class="btn page-link">Précédent</button>
+          </li>
+          <div id="pagination-counter"></div>
+          <li class="page-item">
+            <button id="next" class="btn page-link">Suivant</button>
+          </li>
+        </ul>
+      </nav>
     </main>
 
     <footer class="text-muted py-15 align-items-center">
@@ -233,15 +154,20 @@
           Rija</section>
         <section>
           <img style="width: 20px; height:20%"
-            src="/images/fb.png"
+            src="../images/fb.png"
             alt="Logo facebook" />
           <img style="width: 20px; height:20%"
-            src="/images/inst.png"
+            src="../images/inst.png"
             alt="Logo instagram" />
         </section>
       </div>
     </footer>
 
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="artist.js"></script>
   </body>
-
 </html>
