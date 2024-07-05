@@ -103,7 +103,7 @@ async function actorDisplay(pageNumber, actorData) {
         boutons.forEach((bouton) => {
             bouton.addEventListener("click", () => {
                 // Redirection vers la page 'cart-film.html' avec l'ID du bouton en tant que paramètre dans la chaîne de requête
-                window.location = `../actor.html?${bouton.id}`
+                window.location = `../actor.html?id=${bouton.id}`
             })
         })
         currentPage = pageNumber;

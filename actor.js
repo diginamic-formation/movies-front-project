@@ -205,10 +205,3 @@ document
       }
     });
   });
-
-// Set the values of form inputs
-// nameInput.value = actorData.fullName;
-// dateBirthInput.value = actorData.birthday;
-// placeBirthInput.value = actorData.placeName;
-// citizenshipInput.value = actorData.country;
-// heightInput.value = actorData.height;

@@ -93,37 +93,14 @@
                         </li>
                     </ul>
                 </div>
-                <div class="d-flex">
-
-                    <label for="name">
-                        <select name="choix" id="choix" style="height: 40px;">
-                            <option value="film">Films</option>
-                            <option value="person">Célébrités</option>
-                        </select>
-                    </label>
-                    <input class="form-control form-control-sm" type="search"
-                        name="name"
-                        id="name" aria-label="Search">
-
-                    <button class="btn btn-outline-success" type="submit"
-                        data-toggle="modal" data-target="#exampleModal"
-                        onclick="choice()">Search</button>
-                </br>
-
-                </div>
             </div>
-
         </nav>
-       
     </header>
-
     <main>
 
         <section class=" text-center ">
            
-            <div id="quiz">
-               
-                            
+            <div id="quiz">              
                 <div class="text-white">
                     <span>Vous pensez avoir ce qu’il faut pour être un cinéphile digne de ce nom?</br>
                         Clickez sur ce bouton 
@@ -132,13 +109,11 @@
                               Générer un Quiz
                             </button>
                             <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <button id = "quizou1" type ="submit" value ="film" class="dropdown-item" onclick="quizChoice(quizou1)">Films</button>
+                              <button id = "quizou1" type ="submit" value ="film" class="dropdown-item" onclick="quizChoice(quizou1)">Films </button>
                               <button id = "quizou2" type ="submit" value ="acteur" class="dropdown-item" onclick="quizChoice(quizou2)">Acteurs</button>
                             </div>
                         </div>
-                        
-                        pour avoir des quizs </br>et devinez les réponses.</br>
-                        Puis, appuyer sur le bouton <button type="button" class="btn btn-outline-success "</button onclick="afficheSolution()">Solution</button> pour vérifier vos réponses.</br 
+                        pour avoir des quizs </br>et devinez les réponses.</br> Puis, appuyer sur le bouton <button type="button" class="btn btn-outline-success " onclick="afficheSolution()">Solution</button> pour vérifier vos réponses.</br> 
                     </span> 
                 </br>
                 </div>

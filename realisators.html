@@ -70,21 +70,6 @@
             </li>
           </ul>
         </div>
-        <div class="d-flex">
-
-          <label for="name">
-            <select name="choix" id="choix" style="height: 40px;">
-              <option value="film">Films</option>
-              <option value="person">Célébrités</option>
-            </select>
-          </label>
-          <input class="form-control form-control-sm" type="search" name="name"
-            id="name" aria-label="Search">
-
-          <button class="btn btn-outline-success" type="submit"
-            onclick="choice()">Search</button>
-
-        </div>
       </div>
     </nav>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -111,35 +96,33 @@
     </div>
   </header>
       <main class="container">
-        <!--Menu de recherche-->
-        <!-- <section class="d-flex justify-content-center">
-            <input class="form-control me-2" type="search" placeholder="Entrer un film" aria-label="Search">
-            <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
-        </section> -->
-        <section class="d-flex">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Entrer un acteur pour avoir plus de détails"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-secondary" type="submit">
-            Rechercher
-          </button>
-        </section>
+        <div class="d-flex flex-column position-relative mt-4">
+          <div class="d-flex align-items-center">
+              <input
+                  class="form-control me-2 flex-grow-1"
+                  type="search"
+                  placeholder="Entrer le nom d'un realisateur pour avoir plus de détails"
+                  aria-label="Search"
+                  id="actor-name"
+                  oninput="autocompleteRealisator()"
+              />
+              <button class="btn btn-outline-success" type="button" onclick="searchRealisatorByName()">Rechercher</button>
+          </div>
+          <div id="autocomplete-list" class="list-group position-absolute" style="z-index: 1000; width: calc(100% - 100px); top: 38px;">
+              <!-- Les suggestions seront ajoutées ici dynamiquement -->
+          </div>
+      </div>
         <!--Section films-->
         <section
           class="actors row row-cols-1 row-cols-md-4 gy-4 my-3"
         ></section>
+        <div id="actors-size"></div>
         <nav aria-label="...">
           <ul class="pagination justify-content-center">
             <li>
               <button id="prev" class="btn page-link">Précédent</button>
             </li>
-            <li class="page-item disabled"><a class="page-link">1</a></li>
-            <li class="page-item disabled"><a class="page-link">2</a></li>
-            <li class="page-item disabled"><a class="page-link">3</a></li>
-            <li class="page-item disabled"><a class="page-link">...</a></li>
+            <div id="pagination-counter"></div>
             <li class="page-item">
               <button id="next" class="btn page-link">Suivant</button>
             </li>
