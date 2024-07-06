@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actor Profile</title>
+        <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.css"
+      integrity="sha512-tx5+1LWHez1QiaXlAyDwzdBTfDjX07GMapQoFTS74wkcPMsI3So0KYmFe6EHZjI8+eSG0ljBlAQc3PQ5BTaZtQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css-actor/normalize.css" />
+    <link rel="stylesheet" href="css-actor/styles.css" />
+    <style></style>
+  </head>
+
+  <body>
+<header style="width: 100%;">
+      <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+          <div class="container">
+            <a href="../index.html"
+              class="navbar-brand d-flex align-items-center">
+              <img src="images/movie2.png" />
+              <strong>Movies</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarHeader"
+              aria-controls="navbarHeader" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button> </div>
+        </div>
+        <div
+          class="collapse navbar-collapse text-white justify-content-between align-items-center"
+          style="width:70%" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-white">
+            <li class="nav-item ">
+              <a class="nav-link active " aria-current="page"
+                href="../index.html">🏠 Home</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link text-white " href="genre.html">Genres</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link text-white " href="actors.html">Acteurs</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link text-white " href="realisators.html">Réalisateurs</a>
+            </li>
+            <li class="nav-item text-white">
+              <a class="nav-link text-white" href="films.html">Films</a>
+            </li>
+            <li class="nav-item text-white">
+              <a class="nav-link text-white" href="quiz.html">Quiz</a>
+            </li>
+          </ul>
+        </div>
+        <div class="d-flex">
+
+          <label for="name">
+            <select name="choix" id="choix" style="height: 40px;">
+              <option value="film">Films</option>
+              <option value="person">Célébrités</option>
+            </select>
+          </label>
+          <input class="form-control form-control-sm" type="search" name="name"
+            id="name" aria-label="Search">
+
+          <button class="btn btn-outline-success" type="submit"
+            onclick="choice()">Search</button>
+
+        </div>
+      </div>
+
+    </nav>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Movie title</h5>
+            <button type="button" class="close" data-dismiss="modal"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+              data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+    <main class="main-container">
+      <section class="actor-identity">
+        <div class="actor-image"></div>
+        <ul>
+          <span id="edit-icon" class="edit-icon">✏️</span>
+          <div id="edit-modal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <form id="edit-movie-form">
+                <label for="name">Identité:</label>
+                <input type="text" id="name" name="name" />
+                <label for="dateBirth">Date de naissance:</label>
+                <input type="text" id="dateBirth" name="dateBirth" />
+                <label for="placeBirth">Lieu de naissance:</label>
+                <input type="text" id="placeBirth" name="placeBirth" />
+                <label for="citizenship">Nationalité:</label>
+                <input type="text" id="citizenship" name="citizenship" />
+                <label for="height">Taille:</label>
+                <input type="text" id="height" name="height" />
+                <button type="submit">Update</button>
+              </form>
+            </div>
+          </div>
+        </ul>
+        <!-- Actor Info -->
+        <div class="actor-details row row-cols-1 gy-4 my-3 mx-5"></div>
+      </section>
+      <section class="actor-info">
+        <section class="actor-biography">
+          <h2>Biographie</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure cum
+            perferendis officiis rem veniam, ad eum nostrum voluptates ipsum
+            maiores, explicabo quasi nihil! Assumenda illum id veniam mollitia
+            incidunt autem? Sed accusamus sint saepe molestias possimus dolorem
+            laborum rem id fugit quod deleniti perspiciatis totam provident
+            commodi quibusdam eius odio, velit maxime quidem eveniet! Minima
+            enim error quidem sequi natus. Reiciendis, nihil minus a molestiae
+            quisquam reprehenderit aliquam praesentium rerum quibusdam dolores
+            minima quae, officiis optio accusamus maiores laudantium, iste
+            dolorum tempora ex corrupti voluptate aut. Dicta adipisci eaque ut?
+            Optio, quidem quam facere sequi laboriosam pariatur odit totam
+            excepturi fuga quod dolor nobis sint adipisci recusandae eaque
+            deleniti illum, sit esse est facilis iure autem. Corporis velit
+            ipsum cumque.orem ipsum dolor sit amet consectetur adipisicing elit.
+            Iure cum perferendis officiis rem veniam, ad eum nostrum voluptates
+            ipsum maiores, explicabo quasi nihil! Assumenda illum id veniam
+            mollitia incidunt autem? Sed accusamus sint saepe molestias possimus
+            dolorem laborum rem id fugit quod deleniti perspiciatis totam
+            provident commodi quibusdam eius odio, velit maxime quidem eveniet!
+            Minima enim error quidem sequi natus. Reiciendis, nihil minus a
+            molestiae quisquam reprehenderit aliquam praesentium rerum quibusdam
+            dolores minima quae, officiis optio accusamus maiores laudantium,
+            iste dolorum tempora ex corrupti voluptate aut. Dicta adipisci eaque
+            ut? Optio, quidem quam facere sequi laboriosam pariatur odit totam
+            excepturi fuga quod dolor nobis sint adipisci recusandae eaque
+            deleniti illum, sit esse est facilis iure autem. Corporis velit
+            ipsum cumque.
+          </p>
+        </section>
+        <section class="actor-filmography">
+          <h2>Filmographie</h2>
+          <form id="year-filter-form">
+            <label for="start-year">De:</label>
+            <input
+              type="number"
+              id="start-year"
+              name="start-year"
+              placeholder="année de début"
+            />
+
+            <label for="end-year">à:</label>
+            <input
+              type="number"
+              id="end-year"
+              name="end-year"
+              placeholder="année de fin"
+            />
+
+            <button type="submit">Filtrer</button>
+          </form>
+          <div id="movies-list" class="scrollable"></div>
+        </section>
+      </section>
+
+      <script src="realisator.js"></script>
+    </main>
+    <footer class="text-muted py-15 align-items-center bg-dark">
+      <div
+        class="d-flex text-center justify-content-between align-items-center px-14em">
+        <section>
+          <a href="../index.html" class="text-decoration-none">©️
+            Diginamic Movies 2023</a>
+        </section>
+        <section class="mb-1">Powered by Garmi, Jaouad, Fares et
+          Rija</section>
+        <section>
+          <img style="width: 20px; height:20%"
+            src="/images/fb.png"
+            alt="Logo facebook" />
+          <img style="width: 20px; height:20%"
+            src="/images/inst.png"
+            alt="Logo instagram" />
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>
