@@ -1,4 +1,12 @@
-import { getActorPicture } from "../services/actorService.js";
+
+var pictures = null;
+var results = null;
+
+window.onload = function() {
+    pictures = document.getElementById("pictures");
+    results = document.getElementById("results");
+}
+  
 
 document.getElementById('search-type').addEventListener('change', updateMessageAndFields);
 
@@ -35,6 +43,57 @@ function updateMessageAndFields() {
     }
 }
 
+async function printPictures(idActor1, idActor2) {
+    await fetch(`http://localhost:8080/quiz/films/generate`)
+    .then((response) => { return response.json() })
+    .then(data => {
+        generatePictures(data)}).then(() => {
+            pictures.removeAttribute("hidden")
+            results.removeAttribute("hidden")
+        }
+    )
+    .catch(error => console.log(error))
+}
+
+async function generatePictures(data){
+    film1 = data.film1;
+    film2 = data.film2;
+    acteurs = data.actors;
+    wrongActors = data.wrongActors;
+    let index  = getRandomInt(acteurs.length)
+    correctAnswer = acteurs[index].id
+    acteurs = [acteurs[index], ...wrongActors]    
+
+    texteQuiz = `Qui est l'acteur ou l'actrice commun(e) aux films :`
+    texteSolution = "L'acteur ou l'actrice est "
+    film1.picture = await getPictMovie(film1.referenceNumber);
+    film2.picture = await getPictMovie(film2.referenceNumber);
+    let affQuiz = document.querySelector("#quizEnigme")
+    affQuiz.innerHTML = ""
+    affQuiz.innerHTML +=
+        (`
+        <div >
+            <article class="col">
+                <div class="card shadow p-3 mb-5 rounded " style="width: 45rem;">
+                <h5 class="card-title text-truncate" name="titre">${texteQuiz}</h5>
+                    <div class="card-body d-flex justify-content-between">
+                        <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+                            <h5>${truncateText(film1.title)}</h5>
+                            <img class="card-img-top" src=${film1.picture} alt="image ${truncateText(film1.title)}" />
+                        </div>
+                        <div class="card shadow p-3 mb-5 bg-body-tertiary rounded">
+                            <h5>${truncateText(film2.title)}</h5>
+                            <img class="card-img-top" src=${film2.picture} alt="image ${truncateText(film2.title)}" />
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                    </div>
+                </div>
+            </article>
+        </div>`)
+
+    affichageActorSolution(acteurs);
+}
 
 
 function setupAutocomplete(inputId, type) {
@@ -59,6 +118,32 @@ function setupAutocomplete(inputId, type) {
                 });
         }
     });
+
+
+function getPictMovie(imdbId) {
+    return fetch(
+        `https://api.themoviedb.org/3/find/${imdbId}?external_source=imdb_id&api_key=${API_KEY_Actor}`
+    )
+        .then((response) => response.json())
+        .then((data) => {
+            for (i in data) {
+                if (data[i][0] && data[i][0].poster_path != null) {
+                    return `https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${data[i][0].poster_path}`;
+                }
+            }
+            return "images/no-poster-available.jpg";
+        });
+}
+
+function truncateText(text) {
+    if (text.length > MAX_LENGTH) {
+        return text.substring(0, MAX_LENGTH) + '...';
+    }
+    return text;
+}
+
+
+
 
     // Hide the list when clicking outside of it
     document.addEventListener('click', function (event) {
@@ -112,7 +197,24 @@ function printElement(name1, name2) {
         .then(response => response.json())
         .then(data => data.content)
 
+}
 
-
-
+function getPictActeur(imdbId) {
+    // Effectue une requête pour récupérer les informations de l'acteur à partir de l'API The Movie Database
+    return fetch(
+        `https://api.themoviedb.org/3/find/${imdbId}?external_source=imdb_id&api_key=${API_KEY_Actor}`
+    )
+        .then((response) => response.json()) // Convertit la réponse en JSON
+        .then((data) => {
+            // Parcourt les résultats de la réponse JSON
+            for (i in data) {
+                // Vérifie si le premier élément du tableau existe et a un chemin de profil d'image
+                if (data[i][0] && data[i][0].profile_path != null) {
+                    // Retourne l'URL de l'image de l'acteur
+                    return `https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${data[i][0].profile_path}`;
+                }
+            }
+            // Retourne une URL d'image par défaut si aucune image n'est trouvée
+            return "images/no-poster-available.jpg";
+        });
 }

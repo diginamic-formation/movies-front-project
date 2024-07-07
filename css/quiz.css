@@ -6,3 +6,33 @@
     width : 225px;
     height : 325px;
     }
+
+    .form-group {
+        display: flex;
+        align-items: center;
+    }
+    
+    .form-group label {
+        margin-right: 10px; /* Espace entre le label et la selectbox */
+    }
+
+    .card-img-top {
+        max-height: 250px;
+        width: auto;
+      }
+
+      .card-img-top {
+        max-height: 250px;
+        width: auto;
+      }
+      .affSolution {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .card-container {
+        flex: 0 0 48%; /* Deux cartes par ligne */
+        margin-bottom: 20px;
+      }
+
+      

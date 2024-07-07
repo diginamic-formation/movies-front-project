@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Divs and Cards</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .container-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .left-div {
+      width: 40%;
+      border: 1px solid #000;
+      padding: 10px;
+      margin-right: 20px;
+    }
+    .right-div {
+      width: 58%;
+      border: 1px solid #000;
+      padding: 10px;
+    }
+    .card {
+      margin-bottom: 10px;
+    }
+    .header-div {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header-div">
+      <label for="quiz-select">Vous pensez être un cinéphile digne de ce nom</label><br>
+      <select id="quiz-select" class="form-control" style="width: 200px; margin: 0 auto;">
+        <option>Acteurs</option>
+        <option>Films</option>
+      </select><br>
+      <button class="btn btn-primary" onclick="generateQuiz()">Générer le quiz</button>
+    </div>
+    <div class="container-flex">
+      <div class="left-div" id="actors-div">
+        <div class="row">
+          <!-- Actor cards will be inserted here -->
+        </div>
+      </div>
+      <div class="right-div" id="films-div">
+        <div class="row">
+          <!-- Film cards will be inserted here -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const data = {
+      "actor1": {
+        "id": 21497,
+        "fullName": "Milauna Jackson",
+        "referenceNumber": "nm1040389",
+        "picture": "https://www.themoviedb.org/t/p/w300_and_h450_bestv2//c2VJEDvOGseToqESgWYfbfYl06z.jpg"
+      },
+      "actor2": {
+        "id": 21501,
+        "fullName": "Madisen Beaty",
+        "referenceNumber": "nm2295293",
+        "picture": "https://www.themoviedb.org/t/p/w300_and_h450_bestv2//918cRrEML3EmKeRnrckcX39p6hU.jpg"
+      },
+      "films": [
+        {
+          "id": 1957,
+          "title": "Aquarius",
+          "year": 2016,
+          "referenceNumber": "tt3768572",
+          "rating": 7,
+          "picture": "https://www.themoviedb.org/t/p/w300_and_h450_bestv2//dTihIjUI2ScBXVgcZiyTAq1PBBA.jpg"
+        }
+      ],
+      "wrongFilms": [
+        {
+          "id": 1,
+          "title": "Le fantôme de Milburn",
+          "year": 1981,
+          "referenceNumber": "tt0082449",
+          "rating": 6.3
+        },
+        {
+          "id": 2,
+          "title": "The Man in the Santa Claus Suit",
+          "year": 1979,
+          "referenceNumber": "tt0077898",
+          "rating": 6.5
+        },
+        {
+          "id": 3,
+          "title": "Galactica",
+          "year": 1979,
+          "referenceNumber": "tt0076984",
+          "rating": 7.2
+        }
+      ]
+    };
+
+    function generateQuiz() {
+      const quizType = document.getElementById("quiz-select").value;
+      if (quizType === "Acteurs") {
+        fillActors();
+        fillFilms();
+      }
+    }
+
+    function fillActors() {
+      const actorsDiv = document.getElementById("actors-div").querySelector('.row');
+      actorsDiv.innerHTML = `
+        <div class="col-md-6">
+          <div class="card" style="width: 100%;">
+            <img class="card-img-top" src="${data.actor1.picture}" alt="${data.actor1.fullName}">
+            <div class="card-body">
+              <h5 class="card-title">${data.actor1.fullName}</h5>
+              <p class="card-text">ID: ${data.actor1.id}</p>
+              <a href="https://www.imdb.com/name/${data.actor1.referenceNumber}" class="btn btn-primary" target="_blank">Go to IMDB</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card" style="width: 100%;">
+            <img class="card-img-top" src="${data.actor2.picture}" alt="${data.actor2.fullName}">
+            <div class="card-body">
+              <h5 class="card-title">${data.actor2.fullName}</h5>
+              <p class="card-text">ID: ${data.actor2.id}</p>
+              <a href="https://www.imdb.com/name/${data.actor2.referenceNumber}" class="btn btn-primary" target="_blank">Go to IMDB</a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function fillFilms() {
+      const filmsDiv = document.getElementById("films-div").querySelector('.row');
+      filmsDiv.innerHTML = `
+        ${data.wrongFilms.map(film => `
+          <div class="col-md-6">
+            <div class="card" style="width: 100%;">
+              <div class="card-body">
+                <h5 class="card-title">${film.title}</h5>
+                <p class="card-text">Year: ${film.year}</p>
+                <p class="card-text">Rating: ${film.rating}</p>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      `;
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
