@@ -1,0 +1,45 @@
+.autocomplete-item {
+    color: black; /* Couleur du texte noir */
+    background-color: white; /* Couleur de fond blanche */
+    padding: 5px; /* Espacement interne */
+    cursor: pointer; /* Curseur en forme de main */
+}
+
+.autocomplete-item:hover {
+    background-color: #f1f1f1; /* Couleur de fond lorsque l'élément est survolé */
+}
+
+
+#results {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    padding: 10px;
+    justify-content: center;
+    justify-items: center;
+}
+
+#results .col {
+    flex: 0 0 auto; /* Ensure the cards do not shrink or grow */
+    margin-right: 10px; /* Space between cards */
+}
+
+#results {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.card {
+    display: inline-block;
+    margin-right: 10px;
+    min-width: 150px;
+}
+
+.form-select, .form-control, #find-button {
+    margin-bottom: 5px; /* Réduisez cette valeur selon vos besoins */
+    padding: 5px; /* Ajustez cette valeur pour les inputs */
+}
+
+#input-fields .form-control {
+    margin-bottom: 5px; /* Réduisez cette valeur pour moins d'espace entre les inputs */
+}

@@ -19,7 +19,6 @@ async function getActorsByGenre(idGenre) {
     try {
         const response = await fetch(`${urlAppGenre}/${idGenre}/actors`);
         const data = await response.json();
-        console.log(data);
         return data;
     } catch (error) {
         console.error('Error fetching films:', error);
@@ -73,7 +72,6 @@ async function actorDisplay(pageNumber, actorData) {
                 .then((picture) => picture)
                 .catch((e) => "../images/no-poster-available.jpg");
                 actor.picture = picture;
-                console.log(picture);
                 actorsToDisplay.push(actor)
         }
         document.querySelector(".films").innerHTML = actorsToDisplay.map((actor) => `
@@ -103,12 +101,11 @@ async function actorDisplay(pageNumber, actorData) {
         boutons.forEach((bouton) => {
             bouton.addEventListener("click", () => {
                 // Redirection vers la page 'cart-film.html' avec l'ID du bouton en tant que paramètre dans la chaîne de requête
-                window.location = `../actor.html?${bouton.id}`
+                window.location = `../actor.html?id=${bouton.id}`
             })
         })
         currentPage = pageNumber;
         updateCurrentPageInLocalStorage(currentPage); // Met à jour le stockage local
-        return filmData;
     } catch (error) {
         console.error('Error displaying films:', error);
         throw error;
@@ -136,7 +133,6 @@ window.addEventListener("load", function () {
 
 async function handleGenreActorPage(pageNumber) {
     idGenre = extractQueryParams().get("id")
-    console.log(actors.length);
     if(actors.length === 0){
         actors = await getActorsByGenre(idGenre);
     }

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>    
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="generator" content="Hugo 0.72.0">
+  <title>Recherche Cinéma</title>
+  <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/album/">
+  <!-- Bootstrap core CSS -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  <link href="/assets/css/all.css" rel="stylesheet">
+
+  <link href="css/recherche.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-dark">
+            <div class="navbar navbar-dark bg-dark shadow-sm">
+                <div class="container">
+                    <a href="../index.html" class="navbar-brand d-flex align-items-center">
+                        <img src="images/movie2.png" />
+                        <strong>Movies</strong>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse text-white justify-content-between align-items-center" style="width:70%" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-white">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" aria-current="page" href="../index.html">🏠 Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="genre.html">Genres</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="actors.html">Acteurs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="realisators.html">Réalisateurs</a>
+                    </li>
+                    <li class="nav-item text-white">
+                        <a class="nav-link text-white" href="films.html">Films</a>
+                    </li>
+                    <li class="nav-item text-white">
+                        <a class="nav-link text-white" href="quiz.html">Quiz</a>
+                    </li>
+                    <li class="nav-item text-white">
+                      <a class="nav-link active text-primary" href="recherche.html">Recherche</a>
+                  </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <select id="search-type" class="form-select mb-3 " onchange="updateMessageAndFields()">
+                        <option value="select">Sélectionnez une option</option>
+                        <option value="actors">ACTEURS</option>
+                        <option value="films">FILMS</option>
+                    </select>
+                    <p id="message" class="text-center"></p>
+                    <div id="input-fields" class="mb-3 row g-3 align-items-center">
+                        <!-- Les inputs seront ajoutés ici dynamiquement -->
+                    </div>
+                    <div class="d-flex justify-content-center"> <!-- Ajoutez cette ligne -->
+                        <button type="button" id="find-button" class="btn btn-success" onclick="findCommon()" style="display: none">
+                            Trouver les éléments communs
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div id="pictures" style="width:40%"></div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <h5 id="result-message"></h5>
+            </div>
+            <div id="results-container" class="d-flex justify-content-center" style="width:100%">
+                <div id="results" class="d-flex justify-content-start"></div>
+            </div>
+            <div class="d-flex justify-content-center"> <!-- Ajoutez cette ligne -->
+                <button type="button" id="new-search" class="btn btn-warning" onclick="newSearch()" style="display: none">
+                    nouvelle recherche
+                </button>
+            </div>
+        </div>
+    </main>
+    <script src="recherche.js"></script>
+</body>
+
+</html>

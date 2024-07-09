@@ -17,7 +17,6 @@ async function getFilmsByGenre(idGenre,genrePageNumber) {
     try {
         const response = await fetch(`${urlAppGenre}/${idGenre}/films?page=${genrePageNumber}&size=${pageSize}`);
         const data = await response.json();
-        console.log(data);
         return data;
     } catch (error) {
         console.error('Error fetching films:', error);
@@ -88,7 +87,6 @@ async function filmDisplay(pageNumber, filmData) {
         document.querySelector("#pagination-counter").innerHTML=`
         <li class="page-item enabled"><a class="page-link">${filmData.pageable.pageNumber+1} / ${filmData.totalPages}</a></li>
         `
-        console.log(filmData);
         document.querySelector("#films-size").innerHTML=`
         <p class="font-weight-bold">Résultat : ${filmData.totalElements} films</p>
         `
@@ -130,7 +128,6 @@ window.addEventListener("load", function () {
 // Initial display
 
 async function handleGenreMoviesPage(pageNumber) {
-    console.log("pageNumber : ", pageNumber);
     idGenre = extractQueryParams().get("id")
 
     if (pageNumber < 0 || pageNumber > totalPageCount) {

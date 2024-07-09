@@ -1,0 +1,66 @@
+/* Styles de base pour l'affichage des images et ajustements du texte */
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+/* Style général du corps de la page */
+body {
+    width: 100%;
+    background-color: #343a40; /* Couleur de fond sombre pour tout le corps de la page */
+}
+
+/* Styles pour le header, ajustements de la barre de navigation */
+header {
+    width: 100%;
+}
+
+.navbar {
+    background-color: #343a40; /* Fond sombre pour la barre de navigation */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white; /* Texte blanc pour les liens de la navigation */
+}
+
+.navbar-dark .navbar-brand {
+    color: white; /* Texte blanc pour le titre de la barre de navigation */
+}
+
+/* Styles pour les modales */
+.modal-content {
+    background-color: #f8f9fa; /* Fond clair pour les contenus des modales */
+}
+
+.modal-header,
+.modal-footer {
+    border-bottom: 1px solid #dee2e6; /* Bordure pour le header et footer des modales */
+    border-top: 1px solid #dee2e6;
+}
+
+/* Styles pour le footer */
+footer {
+    color: white; /* Texte en blanc pour une meilleure visibilité */
+    background-color: #343a40; /* Fond sombre pour le footer */
+    padding: 15px 0; /* Espacement pour le footer */
+    text-align: center; /* Centrage du texte dans le footer */
+}
+
+/* Styles supplémentaires si besoin pour les boutons ou autres éléments spécifiques */
+.btn-outline-success {
+    color: #28a745; /* Couleur spécifique pour les boutons de type 'outline-success' */
+}
+
+.btn-group .btn {
+    margin-right: 5px; /* Espace entre les boutons dans un groupe de boutons */
+}

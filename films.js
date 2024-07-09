@@ -7,6 +7,51 @@ let GLOBAL_SEARCH = true;
 const pageSize = 12;
 let totalPageCount = 332; // Nombre total de pages
 let currentPage = 0;
+let selectedFilmId = null;
+
+
+
+function searchFilmByTitle(){
+    console.log("je suis la")
+    if (selectedFilmId) {
+      window.location.href = `/film.html?${selectedFilmId}`;  // Redirection vers la page de l'acteur
+  } else {
+      alert("Veuillez sélectionner un film dans la liste des suggestions.");
+  }
+  }
+  
+  
+  function autocompleteFilm() {
+    var input = document.getElementById('actor-name').value;
+    if (input.length > 2) {  // Suggérer à partir de 3 caractères saisis
+        fetch(`http://localhost:8080/films/auto-complete/${input}`)
+        .then(response => response.json())
+        .then(data => {
+            let autocompleteList = document.getElementById('autocomplete-list');
+            autocompleteList.innerHTML = '';  // Effacer les suggestions précédentes
+            console.log(data)
+            if (data.content) {
+                data.content.slice(0,5).forEach(film => {
+                    let listItem = document.createElement('a');
+                    listItem.classList.add('list-group-item', 'list-group-item-action');
+                    listItem.innerText = film.title;
+                    listItem.href = '#';  // Modifier pour rediriger vers une page de détails
+                    listItem.addEventListener('click', function() {
+                        document.getElementById('actor-name').value = film.title;  // Sélection de l'acteur
+                        selectedFilmId = film.id
+                        autocompleteList.innerHTML = '';  // Effacer les suggestions après la sélection
+                    });
+                    autocompleteList.appendChild(listItem);
+                });
+            }
+        });
+    } else {
+        document.getElementById('autocomplete-list').innerHTML = '';
+    }
+  }
+  
+
+
 /**
  * Fonction asynchrone pour récupérer une liste de films depuis une API avec pagination.
  * @param {number} pageNumber - Le numéro de la page à récupérer.
@@ -105,7 +150,7 @@ async function filmDisplay(pageNumber, filmData) {
         boutons.forEach((bouton) => {
             bouton.addEventListener("click", () => {
                 // Redirection vers la page 'cart-film.html' avec l'ID du bouton en tant que paramètre dans la chaîne de requête
-                window.location = `cart-film.html?${bouton.id}`
+                window.location = `film.html?${bouton.id}`
             })
         })
         currentPage = pageNumber;
