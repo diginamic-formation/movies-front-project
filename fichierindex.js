@@ -61,17 +61,14 @@ console.log(nameGenre);
  * 
  */
 const genreDisp = async () => {
-    
     const genreData = await getGenres();
     let element =  document.querySelector("#genre") 
-    
-    
     genres.forEach(genre => {
           element.innerHTML +=  (`
                 <div >
             
                     <article class="col">
-                        <div class="card shadow p-3 mb-5 bg-body-tertiary rounded bg-primary-subtle" style="width: 22rem;">
+                        <div class="card card-custom shadow p-3 mb-5 bg-body-tertiary rounded bg-primary-subtle" style="width: 22rem;">
                             <div class="card-body ">
                                     
                                     <img class="card-img" src="/images/${genre.id}.jpeg" alt="image genre de film ${genre.nameGenre}" width="250" height="200">
@@ -110,18 +107,10 @@ async function filmByGenreDisp(idGenr, nameGenr) {
     let element =  document.querySelector("#afficheFilmGenre") 
     let genre =  document.querySelector("#afficheGenre") 
     genre.hidden=true
-    console.log(films);
   
     for (const film of films) {
         const picture = await getPictures(film.referenceNumber);
         film.picture = picture;
-   /* }
-    films.forEach(film => {*/
-    
-    
-    // console.log(genre)
-   
-        
         element.innerHTML +=  (`
         <div >
            
@@ -160,18 +149,12 @@ openActeursByGenrePage = (id,name) => {
 }
 
 async function filmBytitre() {
-
     window.location = `rechercheFilm.html`
     let elTitre =  document.querySelector("#filmTitre") 
-    
-    
-    //const picture = await getPictures(filmByT.referenceNumber);
-
     filmByT.picture = picture;
     console.log(filmByT.picture);
     elTitre.innerHTML +=  (`
-        <div >
-           
+        <div > 
             <article class="col">
                 <div class="card shadow p-3 mb-5 bg-body-tertiary rounded bg-primary-subtle" style="width: 22rem;">
                     <div class="card-body ">
@@ -183,11 +166,7 @@ async function filmBytitre() {
                 </div>
             </article>
         </div>
-        `)
-
-       
-    
- 
+        `) 
 } 
 
 

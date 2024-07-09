@@ -68,6 +68,9 @@
                 <li class="nav-item text-white"> 
                     <a class="nav-link active text-primary" href="quiz.html">Quiz</a>
                 </li>
+                <li class="nav-item text-white">
+                    <a class="nav-link text-white" href="recherche.html">Recherche</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -91,28 +94,15 @@
                 </div>
             </div>
             <!--insert quiz-->
-            <div id="affichageQuiz" class="d-flex justify-content-center" style ="width:100%">
+            <div id="affichageQuiz" class="d-flex justify-content-center align-items-center" style ="width:100%">
                 <div id="quizEnigme" style ="width:40%"></div>
                 <div id="quizSolution" style ="width:40%"></div>
             </div>
             <div id="quizSolution" class="affSolution"></div>
             <div id="quizMessage" class="alert alert-info" style="display: none;"></div>
-            <button id="retryButton" class="btn btn-secondary" style="display: none;" onclick="quizStart(event)">Relancer le quiz</button>
+            <button id="retryButton" class="btn btn-secondary" style="display: none;" onclick="quizStart()">Relancer le quiz</button>
         </div>  
     </section>
 </main>
-
-<footer class="text-muted py-15 align-items-center">
-    <div class="d-flex text-center justify-content-between align-items-center px-14em">
-        <section>
-            <a href="../index.html" class="text-decoration-none text-white">©️ Diginamic Movies 2023</a>
-        </section>
-        <section class="mb-1 text-white">Powered by Garmi, Jaouad, Fares et Rija</section>
-        <section>
-            <img style="width: 20px; height:20%" src="/images/fb.png" alt="Logo facebook" />
-            <img style="width: 20px; height:20%" src="/images/inst.png" alt="Logo instagram" />
-        </section>
-    </div>
-</footer>
 </body>
 </html>
